@@ -2,26 +2,27 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Plastic">
     <SolidColorBrush x:Key="borderBrush" Color="#FF375E85" />
-    <SolidColorBrush x:Key="backGround" Color="#FF6DBBFF"/>
-    <SolidColorBrush x:Key="backGround1" Color="#FFD7EDFE"/>
-    <SolidColorBrush x:Key="pressed" Color="#FF004E92"/>
+    <SolidColorBrush x:Key="backGround" Color="#0d6efd"/> 
+    <SolidColorBrush x:Key="backGround1" Color="#0b5ed7"/>
+    <SolidColorBrush x:Key="backGround2" Color="#FF4E87B9"/>
+    <SolidColorBrush x:Key="pressed" Color="#FF375E81"/>
     <FontFamily x:Key="fontFamily" >
         microsoft junhei ui
     </FontFamily>
-    
     <Style TargetType="{x:Type local:Button}">
         <Setter Property="BorderBrush" Value="{StaticResource borderBrush}"/>
         <Setter Property="Background" Value="{StaticResource backGround}"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontFamily" Value="{StaticResource fontFamily}" />
         <Setter Property="BorderThickness" Value="1"/>
-
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="Foreground" Value="#fff" />
+        <Setter Property="Height" Value="45.3"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Button}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="4"
+                    <Border CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{TemplateBinding Background}"
                             Margin="3"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
@@ -35,91 +36,354 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.3" To="#FFD7EDFE" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Opacity)">
-                            <DoubleAnimation Duration="0:0:0.2" To="0.9" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.1" To="#FF6DBBFF" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Opacity)">
-                            <DoubleAnimation Duration="0:0:0.1" To="1" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.ExitActions>
+            <Trigger Property="Theme" Value="Secondary">
+                <Setter Property="Background" Value="#6c757d"/>
+            </Trigger>            
+            <Trigger Property="Theme" Value="Success">
+                <Setter Property="Background" Value="#198754"/>
             </Trigger>
-            <Trigger Property="IsPressed" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.1" To="#FF004E92" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Opacity)">
-                            <DoubleAnimation Duration="0:0:0.2" To="0.8" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.1" To="#FF6DBBFF" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Opacity)">
-                            <DoubleAnimation Duration="0:0:0.1" To="1" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.ExitActions>
+            <Trigger Property="Theme" Value="Danger">
+                <Setter Property="Background" Value="#dc3545"/>
             </Trigger>
-            <MultiTrigger >
-                <MultiTrigger.Conditions >
-                    <Condition Property="IsMouseOver" Value="True"/>
-                    <Condition Property="IsPressed" Value="False"/>
+            <Trigger Property="Theme" Value="Warning">
+                <Setter Property="Background" Value="#ffc107"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+            <Trigger Property="Theme" Value="Info">
+                <Setter Property="Background" Value="#0dcaf0"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+            <Trigger Property="Theme" Value="Light">
+                <Setter Property="Background" Value="#f8f9fa"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+            <Trigger Property="Theme" Value="Dark">
+                <Setter Property="Background" Value="#212529"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="Theme" Value="Primary"/>
                 </MultiTrigger.Conditions>
                 <MultiTrigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.3" To="#FFD7EDFE" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Opacity)">
-                            <DoubleAnimation Duration="0:0:0.2" To="0.9" />
+                            <ColorAnimation Duration="0:0:0.3" To="#0b5ed7" />
                         </Storyboard>
                     </BeginStoryboard>
                 </MultiTrigger.EnterActions>
                 <MultiTrigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.1" To="#FF6DBBFF" />
+                            <ColorAnimation Duration="0:0:0.2"  />
                         </Storyboard>
                     </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>            
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="Theme" Value="Secondary"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
                     <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.Opacity)">
-                            <DoubleAnimation Duration="0:0:0.1" To="1" />
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#5c636a" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.2"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="Theme" Value="Success"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#157347" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="Theme" Value="Danger"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#bb2d3b" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="Theme" Value="Warning"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#ffca2c" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="Theme" Value="Info"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#31d2f2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>            
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="Theme" Value="Light"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#d3d4d5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>           
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="Theme" Value="Dark"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#424649" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Theme" Value="Primary" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#0a58ca" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>            
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Theme" Value="Secondary" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#565e64" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Theme" Value="Success"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#146c43" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>           
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Theme" Value="Danger"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#b02a37" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Theme" Value="Warning" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#ffcd39" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>            
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Theme" Value="Info" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#3dd5f3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>            
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Theme" Value="Light" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#c6c7c8" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>            
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsPressed" Value="True" />
+                    <Condition Property="Theme" Value="Dark" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" To="#4d5154" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <ColorAnimation Duration="0:0:0.3" />
                         </Storyboard>
                     </BeginStoryboard>
                 </MultiTrigger.ExitActions>
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-    
     <Style x:Key="focus" TargetType="TextBox">
         <Setter Property="Template">
             <Setter.Value>
@@ -129,7 +393,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
     <Style TargetType="{x:Type local:TextBox}">
         <Setter Property="Template">
             <Setter.Value>
@@ -138,25 +401,21 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
-                            <TextBox FocusVisualStyle="{DynamicResource focus}" />
-                            
+                            <TextBox FocusVisualStyle="{DynamicResource focus}"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-
-
     <Style x:Key="{x:Static SystemParameters.FocusVisualStyleKey}">
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate>
                     <Rectangle StrokeThickness="1"
-          Stroke="Yellow"
-          StrokeDashArray="1 2"
-          SnapsToDevicePixels="true"/>
+                               Stroke="Yellow"
+                               StrokeDashArray="1 2"
+                               SnapsToDevicePixels="true"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

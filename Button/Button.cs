@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plastic.Themes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,12 +63,21 @@ namespace Plastic
             }
         }
 
-        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(double), typeof(Button), new PropertyMetadata((double)4));
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(Button), new PropertyMetadata(new CornerRadius(6)));
 
-        public double CornerRadius
+        public CornerRadius CornerRadius
         {
-            get { return (double)GetValue(CornerRadiusProperty); }
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
+
+        public static readonly DependencyProperty ThemeProperty = DependencyProperty.Register("Theme", typeof(Theme), typeof(Button), new PropertyMetadata(Theme.Primary));
+
+        public Theme Theme
+        {
+            get { return (Theme)GetValue(ThemeProperty); }
+            set { SetValue(ThemeProperty, value); }
+        }
+    
     }
 }
