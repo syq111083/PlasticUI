@@ -44,11 +44,20 @@ namespace Plastic
     ///     <MyNamespace:CustomControl1/>
     ///
     /// </summary>
-    public class TextBox : Control
+    public class TextBox : System.Windows.Controls.TextBox
     {
         static TextBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextBox), new FrameworkPropertyMetadata(typeof(TextBox)));
+            
+        }
+
+        public static readonly DependencyProperty OutBorderOpacityProperty = DependencyProperty.Register("OutBorderOpacity", typeof(double), typeof(TextBox), new PropertyMetadata((double)0));
+
+        public double OutBorderOpacity
+        {
+            get { return (double)GetValue(OutBorderOpacityProperty); }
+            set { SetValue(OutBorderOpacityProperty, value);}
         }
     }
 }

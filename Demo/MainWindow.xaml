@@ -20,15 +20,20 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel>
-            <plastic:Button Text="{Binding Text}"/>
-            <plastic:Button Theme="Secondary"/>
-            <plastic:Button Theme="Success"/>
-            <plastic:Button Theme="Danger"/>
-            <plastic:Button Theme="Warning" />
-            <plastic:Button Theme="Info"/>
-            <plastic:Button Theme="Light"/>
-            <plastic:Button Theme="Dark"/>
-        </StackPanel>
+        <ScrollViewer>
+
+            <StackPanel>
+                <plastic:Button Text="{Binding Text}"/>
+                <plastic:Button Theme="Secondary"/>
+                <plastic:Button Theme="Success"/>
+                <plastic:Button Theme="Danger"/>
+                <plastic:Button Theme="Warning" />
+                <plastic:Button Theme="Info"/>
+                <plastic:Button Theme="Light"/>
+                <plastic:Button Theme="Dark"/>
+                <plastic:TextBox />
+            </StackPanel>
+        </ScrollViewer>
+
     </Grid>
 </Window>
