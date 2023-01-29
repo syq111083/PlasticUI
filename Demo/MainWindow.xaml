@@ -18,6 +18,9 @@
         <Style TargetType="plastic:Button">
             <Setter Property="Margin" Value="10,3,10,3" />
         </Style>
+        <Style TargetType="plastic:TextBox">
+            <Setter Property="Margin" Value="10,3,10,3" />
+        </Style>
     </Window.Resources>
     <Grid>
         <ScrollViewer>
