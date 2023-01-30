@@ -29,5 +29,7 @@ namespace Demo.ViewModels
 			Text = DateTime.Now.ToString();
 		}
 
+		public string[] Strs { get; set; } = new string[] { "item1", "item2", "item3" };
+
 	}
 }

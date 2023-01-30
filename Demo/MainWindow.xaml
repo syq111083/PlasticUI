@@ -24,7 +24,6 @@
     </Window.Resources>
     <Grid>
         <ScrollViewer>
-
             <StackPanel>
                 <plastic:Button Text="{Binding Text}"/>
                 <plastic:Button Theme="Secondary"/>
@@ -35,6 +34,7 @@
                 <plastic:Button Theme="Light"/>
                 <plastic:Button Theme="Dark"/>
                 <plastic:TextBox />
+                <plastic:ComboBox ItemsSource="{Binding Strs}" />
             </StackPanel>
         </ScrollViewer>
 

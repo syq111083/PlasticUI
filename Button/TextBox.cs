@@ -49,7 +49,7 @@ namespace Plastic
         static TextBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextBox), new FrameworkPropertyMetadata(typeof(TextBox)));
-            
+
         }
 
         public static readonly DependencyProperty OutBorderOpacityProperty = DependencyProperty.Register("OutBorderOpacity", typeof(double), typeof(TextBox), new PropertyMetadata((double)0));
@@ -57,7 +57,18 @@ namespace Plastic
         public double OutBorderOpacity
         {
             get { return (double)GetValue(OutBorderOpacityProperty); }
-            set { SetValue(OutBorderOpacityProperty, value);}
+            set { SetValue(OutBorderOpacityProperty, value); }
+        }
+
+        public static readonly DependencyProperty OnSelectingStatusProperty = DependencyProperty.Register("OnSelectingStatus", typeof(bool), typeof(TextBox), new PropertyMetadata(false));
+
+        public bool OnSelectingStatus
+        {
+            get { return (bool)GetValue(OnSelectingStatusProperty); }
+            set
+            {
+                SetValue(OnSelectingStatusProperty, value);
+            }
         }
     }
 }
