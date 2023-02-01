@@ -70,5 +70,13 @@ namespace Plastic
                 SetValue(OnSelectingStatusProperty, value);
             }
         }
+
+        public static readonly DependencyProperty IsComboBoxProperty = DependencyProperty.Register("IsComboBox", typeof(bool), typeof(TextBox), new PropertyMetadata(false));
+
+        public bool IsComboBox
+        {
+            get { return (bool)GetValue(IsComboBoxProperty); }
+            set { SetValue(IsComboBoxProperty, value);}
+        }
     }
 }

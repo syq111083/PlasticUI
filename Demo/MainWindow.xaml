@@ -16,7 +16,7 @@
     </Window.DataContext>
     <Window.Resources>
         <Style TargetType="plastic:Button">
-            <Setter Property="Margin" Value="10,3,10,3" />
+            <Setter Property="Margin" Value="10,3" />
         </Style>
         <Style TargetType="plastic:TextBox">
             <Setter Property="Margin" Value="10,3,10,3" />
@@ -25,16 +25,20 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <plastic:Button Text="{Binding Text}"/>
-                <plastic:Button Theme="Secondary"/>
-                <plastic:Button Theme="Success"/>
-                <plastic:Button Theme="Danger"/>
-                <plastic:Button Theme="Warning" />
-                <plastic:Button Theme="Info"/>
-                <plastic:Button Theme="Light"/>
-                <plastic:Button Theme="Dark"/>
+                <WrapPanel>
+                    <plastic:Button Text="{Binding Text}"/>
+                    <plastic:Button Theme="Secondary"/>
+                    <plastic:Button Theme="Success"/>
+                    <plastic:Button Theme="Danger"/>
+                    <plastic:Button Theme="Warning" />
+                    <plastic:Button Theme="Info"/>
+                    <plastic:Button Theme="Light"/>
+                    <plastic:Button Theme="Dark"/>
+                </WrapPanel>
+
                 <plastic:TextBox />
                 <plastic:ComboBox ItemsSource="{Binding Strs}" />
+                <plastic:CheckBox />
             </StackPanel>
         </ScrollViewer>
 

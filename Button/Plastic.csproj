@@ -6,4 +6,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\icons8-down-arrow-64.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\icons8-down-arrow-64.png" />
+  </ItemGroup>
+
 </Project>
