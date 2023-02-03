@@ -515,7 +515,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
     <Style TargetType="{x:Type local:ComboBox}">
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Cursor" Value="Hand" />
@@ -616,45 +615,100 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
     <Style TargetType="{x:Type local:CheckBox}">
         <Setter Property="Width" Value="24"/>
         <Setter Property="Height" Value="24"/>
+        <Setter Property="BorderWidth" Value="16"/>
+        <Setter Property="BorderHeight" Value="16"/>
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate>
-                    <Grid>
-                        <BulletDecorator>
-                            <BulletDecorator.Bullet>
-                                <Grid>
-                                    <Rectangle Stroke="#dfe3e7"
-                                               Height="{TemplateBinding Height}"
-                                               Width="{TemplateBinding Width}"
-                                               StrokeThickness="0.67"
-                                               RadiusX="4"
-                                               RadiusY="4"/>
-                                    <Border CornerRadius="6"
-                                            Visibility="Collapsed"
-                                            Background="#0d6efd"
-                                            BorderBrush="#c2dbfe"
-                                            Padding="4"
-                                            BorderThickness="4">
-                                        <Grid>
-                                            <Rectangle Fill="#0d6efd"
-                                                       RadiusX="4"
-                                                       RadiusY="4"
-                                                       Width="16"
-                                                       Height="16"/>
-                                            <TextBlock Text="✓"
-                                                       Foreground="White"
-                                                       VerticalAlignment="Center"/>
-                                        </Grid>
-                                        
-                                    </Border>
-                                </Grid>
-                            </BulletDecorator.Bullet>
-                        </BulletDecorator>
-                    </Grid>
+                <ControlTemplate TargetType="{x:Type local:CheckBox}">
+                    <BulletDecorator>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="SelectStates">
+                                <VisualState x:Name="Unselected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Storyboard.TargetName="border"
+                                                                       Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Duration="0"
+                                                                       Storyboard.TargetName="border">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                         To="Transparent"
+                                                         Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                         Storyboard.TargetName="border"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="#c2dbfe"
+                                                        Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <BulletDecorator.Bullet>
+                            <Grid>
+                                <Rectangle Stroke="#dfe3e7"
+                                           Height="{TemplateBinding BorderHeight}"
+                                           Width="{TemplateBinding BorderWidth}"
+                                           StrokeThickness="0.67"
+                                           Margin="4"
+                                           x:Name="rect0"
+                                           RadiusX="4"
+                                           Fill="White"
+                                           RadiusY="4"/>
+                                <Border CornerRadius="6"
+                                        Focusable="True"
+                                        x:Name="border"
+                                        Background="#0d6efd"
+                                        BorderBrush="#c2dbfe"
+                                        Padding="4"
+                                        BorderThickness="4">
+                                    <Grid>
+                                        <Rectangle Fill="#0d6efd"
+                                                   x:Name="rect1"
+                                                   RadiusX="4"
+                                                   RadiusY="4"
+                                                   Width="{TemplateBinding BorderWidth}"
+                                                   Height="{TemplateBinding BorderHeight}"/>
+                                        <TextBlock Text="✓"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </BulletDecorator.Bullet>
+                    </BulletDecorator>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
