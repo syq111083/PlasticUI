@@ -29,80 +29,62 @@ namespace Plastic
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CheckBox), new FrameworkPropertyMetadata(typeof(CheckBox)));
         }
 
-        private Rectangle? rect0;
-
-        public Rectangle? Rect0
+        protected override void OnGotFocus(RoutedEventArgs e)
         {
-            get { return rect0; }
-            set
-            {
-                if (rect0 != null)
-                    rect0.MouseLeftButtonDown -= new MouseButtonEventHandler(LeftButtonDown);
-                rect0 = value;
-                if (rect0 != null)
-                    rect0.MouseLeftButtonDown += new MouseButtonEventHandler(LeftButtonDown);
-            }
+            base.OnGotFocus(e);
+            VisualStateManager.GoToState(this, "Focused", true);
         }
 
-        private Border? border0;
 
-        public Border? Border0
+        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
-            get { return border0; }
-            set
-            {
-                if (border0 != null)
-                {
-                    border0.FocusableChanged -= Border0_FocusableChanged;
-                    border0.MouseLeftButtonDown -= new MouseButtonEventHandler(LeftButtonDown);
-                }
-                border0 = value;
-                if (border0 != null)
-                {
-                    border0.FocusableChanged += Border0_FocusableChanged;
-                    border0.MouseLeftButtonDown += new MouseButtonEventHandler(LeftButtonDown);
-                }
-            }
-        }
+            base.OnMouseLeftButtonUp(e);
+            //if (IsChecked == true)
+            //{
+            //    IsChecked= false;
+            //    VisualStateManager.GoToState(this, "Selected", true);
+            //}
+            //else
+            //{
+            //    IsChecked= true;
+            //    VisualStateManager.GoToState(this, "Unselected", true);
+            //}
 
-        private void Border0_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            base.OnGotFocus(null);
-            if (Border0?.IsFocused == true)
-            {
-                VisualStateManager.GoToState(this, "Focused", true);
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, "Unfocused", true);
-
-            }
-        }
-
-        void LeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            base.OnClick();
-            if (IsChecked == true)
-            {
-                IsChecked = false;
-                VisualStateManager.GoToState(this, "Unselected", true);
-            }
-            else
-            {
-                IsChecked = true;
-                VisualStateManager.GoToState(this, "Selected", true);
-            }
         }
 
         public override void OnApplyTemplate()
         {
-            base.OnClick();
+            Focusable = true;
             VisualStateManager.GoToState(this, "Unselected", true);
-            Rect0 = GetTemplateChild("rect0") as Rectangle;
-            Border0 = GetTemplateChild("border") as Border;
         }
 
+        protected override void OnChecked(RoutedEventArgs e)
+        {
+            base.OnChecked(e);
+            VisualStateManager.GoToState(this, "Selected", true);
+        }
 
+        protected override void OnUnchecked(RoutedEventArgs e)
+        {
+            base.OnUnchecked(e);
+            VisualStateManager.GoToState(this, "Unselected", true);
+        }
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
+            if (IsChecked == true)
+                VisualStateManager.GoToState(this, "CheckedPressing", true);
+            else
+                VisualStateManager.GoToState(this, "UncheckedPressing", true);
+        }
+
+        protected override void OnMouseUp(MouseButtonEventArgs e)
+        {
+            base.OnMouseUp(e);
+            VisualStateManager.GoToState(this, "NotPressing", true);
+
+        }
 
         public static readonly DependencyProperty BorderWidthProperty = DependencyProperty.Register("BorderWidth", typeof(double), typeof(CheckBox), new PropertyMetadata((double)24));
 
@@ -111,7 +93,6 @@ namespace Plastic
             get { return (double)GetValue(BorderWidthProperty); }
             set { SetValue(BorderWidthProperty, value); }
         }
-
 
         public static readonly DependencyProperty BorderHeightProperty = DependencyProperty.Register("BorderHeight", typeof(double), typeof(CheckBox), new PropertyMetadata((double)24));
 
