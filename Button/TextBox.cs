@@ -15,41 +15,11 @@ using System.Windows.Shapes;
 
 namespace Plastic
 {
-    /// <summary>
-    /// Follow steps 1a or 1b and then 2 to use this custom control in a XAML file.
-    ///
-    /// Step 1a) Using this custom control in a XAML file that exists in the current project.
-    /// Add this XmlNamespace attribute to the root element of the markup file where it is 
-    /// to be used:
-    ///
-    ///     xmlns:MyNamespace="clr-namespace:TextBox"
-    ///
-    ///
-    /// Step 1b) Using this custom control in a XAML file that exists in a different project.
-    /// Add this XmlNamespace attribute to the root element of the markup file where it is 
-    /// to be used:
-    ///
-    ///     xmlns:MyNamespace="clr-namespace:TextBox;assembly=TextBox"
-    ///
-    /// You will also need to add a project reference from the project where the XAML file lives
-    /// to this project and Rebuild to avoid compilation errors:
-    ///
-    ///     Right click on the target project in the Solution Explorer and
-    ///     "Add Reference"->"Projects"->[Select this project]
-    ///
-    ///
-    /// Step 2)
-    /// Go ahead and use your control in the XAML file.
-    ///
-    ///     <MyNamespace:CustomControl1/>
-    ///
-    /// </summary>
     public class TextBox : System.Windows.Controls.TextBox
     {
         static TextBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextBox), new FrameworkPropertyMetadata(typeof(TextBox)));
-
         }
 
         public static readonly DependencyProperty OutBorderOpacityProperty = DependencyProperty.Register("OutBorderOpacity", typeof(double), typeof(TextBox), new PropertyMetadata((double)0));
@@ -70,6 +40,14 @@ namespace Plastic
                 SetValue(OnSelectingStatusProperty, value);
             }
         }
+
+        protected override void OnGotFocus(RoutedEventArgs e)
+        {
+            base.OnGotFocus(e);
+            VisualStateManager.GoToState(this, "Focused", true);
+        }
+
+
 
         public static readonly DependencyProperty IsComboBoxProperty = DependencyProperty.Register("IsComboBox", typeof(bool), typeof(TextBox), new PropertyMetadata(false));
 

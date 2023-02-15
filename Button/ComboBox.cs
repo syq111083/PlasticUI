@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -15,40 +16,57 @@ using System.Windows.Shapes;
 
 namespace Plastic
 {
-    /// <summary>
-    /// 按照步骤 1a 或 1b 操作，然后执行步骤 2 以在 XAML 文件中使用此自定义控件。
-    ///
-    /// 步骤 1a) 在当前项目中存在的 XAML 文件中使用该自定义控件。
-    /// 将此 XmlNamespace 特性添加到要使用该特性的标记文件的根
-    /// 元素中:
-    ///
-    ///     xmlns:MyNamespace="clr-namespace:Plastic"
-    ///
-    ///
-    /// 步骤 1b) 在其他项目中存在的 XAML 文件中使用该自定义控件。
-    /// 将此 XmlNamespace 特性添加到要使用该特性的标记文件的根
-    /// 元素中:
-    ///
-    ///     xmlns:MyNamespace="clr-namespace:Plastic;assembly=Plastic"
-    ///
-    /// 您还需要添加一个从 XAML 文件所在的项目到此项目的项目引用，
-    /// 并重新生成以避免编译错误:
-    ///
-    ///     在解决方案资源管理器中右击目标项目，然后依次单击
-    ///     “添加引用”->“项目”->[浏览查找并选择此项目]
-    ///
-    ///
-    /// 步骤 2)
-    /// 继续操作并在 XAML 文件中使用控件。
-    ///
-    ///     <MyNamespace:ComboBox/>
-    ///
-    /// </summary>
     public class ComboBox : System.Windows.Controls.ComboBox
     {
         static ComboBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ComboBox), new FrameworkPropertyMetadata(typeof(ComboBox)));
         }
+
+        private TextBox tb0;
+
+        public TextBox Tb0
+        {
+            get { return tb0; }
+            set { tb0 = value; }
+        }
+
+        private Popup popup0;
+
+        public Popup Popup0
+        {
+            get { return popup0; }
+            set { popup0 = value; }
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            Tb0 = GetTemplateChild("tb0") as TextBox;
+            Popup0 = GetTemplateChild("popup0") as Popup;
+            Popup0.GotFocus += Popup0_GotFocus;
+        }
+
+        private void Popup0_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Tb0.Focus();
+
+        }
+
+        protected override void OnDropDownOpened(EventArgs e)
+        {
+            base.OnDropDownOpened(e);
+            Tb0.Focus();
+        }
+
+        protected override void OnGotFocus(RoutedEventArgs e)
+        {
+            base.OnGotFocus(e);
+            Tb0.Focus();
+        }
+
+
+
+
     }
 }

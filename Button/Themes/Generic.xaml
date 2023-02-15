@@ -395,6 +395,47 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextBox}">
                     <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                </VisualState>
+                                <VisualState x:Name="Disabled"></VisualState>
+                                <VisualState x:Name="ReadOnly"></VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.3" 
+                                                         To="1"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="out_border"/>
+                                        <ColorAnimation Duration="0:0:0.3" 
+                                                        To="#86b7fe"
+                                                        Storyboard.TargetName="out_border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.3" 
+                                                         To="0"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="out_border"/>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="Transparent" 
+                                                        Storyboard.TargetName="out_border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ValidationStates">
+                                <VisualState x:Name="Valid"></VisualState>
+                                <VisualState x:Name="InvalidFocused"></VisualState>
+                                <VisualState x:Name="InvalidUnfocused"></VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Border CornerRadius="6"
                                 BorderThickness="4"
                                 Name="out_border"
@@ -418,6 +459,7 @@
                                     <TextBlock VerticalAlignment="Center"
                                                Name="tb1"
                                                Margin="10,0,0,0"
+                                               FontWeight="ExtraBold"
                                                Text="∨"
                                                Grid.Column="1">
                                     </TextBlock>
@@ -434,86 +476,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="Tag" Value="1">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="OutBorderOpacity" >
-                            <DoubleAnimation Duration="0:0:0.3" To="1" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.3" To="#86b7fe" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="OutBorderOpacity" >
-                            <DoubleAnimation Duration="0:0:0.3"  />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.3" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.ExitActions>
-            </Trigger>
-            <Trigger Property="IsFocused" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="OutBorderOpacity" >
-                            <DoubleAnimation Duration="0:0:0.3" To="1" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.3" To="#86b7fe" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="OutBorderOpacity" >
-                            <DoubleAnimation Duration="0:0:0.3"  />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.3" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.ExitActions>
-            </Trigger>
-            <Trigger Property="IsMouseCaptureWithin" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="OutBorderOpacity" >
-                            <DoubleAnimation Duration="0:0:0.3" To="1" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.3" To="#86b7fe" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="OutBorderOpacity" >
-                            <DoubleAnimation Duration="0:0:0.3"  />
-                        </Storyboard>
-                    </BeginStoryboard>
-                    <BeginStoryboard>
-                        <Storyboard Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-                            <ColorAnimation Duration="0:0:0.3" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.ExitActions>
-            </Trigger>
-        </Style.Triggers>
     </Style>
     <Style TargetType="{x:Type local:ComboBox}">
         <Setter Property="FontSize" Value="16" />
@@ -521,7 +483,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ComboBox}">
-                    <Grid>
+                    <Grid Background="Transparent">
                         <ContentPresenter x:Name="ContentSite"
                                           Content="{TemplateBinding SelectionBoxItem}"
                                           ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
@@ -531,19 +493,17 @@
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Left">
                         </ContentPresenter>
-                        <local:TextBox x:Name="PART_EditableTextBox"
+                        <local:TextBox x:Name="tb0"
                                        IsReadOnly="True"
                                        Focusable="True"
                                        IsComboBox="True"
-                                       Cursor="Hand"
                                        Margin="12,0,12,0"/>
-                        <Popup x:Name="Popup"
+                        <Popup x:Name="popup0"
                                Placement="Bottom"
+                               Focusable="True"
                                IsOpen="{TemplateBinding IsDropDownOpen}"
-                               
                                AllowsTransparency="True"
-                               Focusable="False"
-                               PopupAnimation="Slide">
+                               PopupAnimation="Fade">
                             <Grid SnapsToDevicePixels="True"
                                   MinWidth="{TemplateBinding ActualWidth}"
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
@@ -564,22 +524,20 @@
                                               SnapsToDevicePixels="True">
                                     <StackPanel KeyboardNavigation.DirectionalNavigation="Contained"
                                                 IsItemsHost="True"
-                                                
                                                 Margin="6">
-
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>
                         </Popup>
                     </Grid>
-                    <ControlTemplate.Triggers>
+                    <!--<ControlTemplate.Triggers>
                         <Trigger  Property="IsDropDownOpen" Value="True">
                             <Setter TargetName="PART_EditableTextBox" Property="Tag" Value="1"/>
                         </Trigger>
                         <Trigger  Property="IsDropDownOpen" Value="False">
                             <Setter TargetName="PART_EditableTextBox" Property="Tag" Value="0"/>
                         </Trigger>
-                    </ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

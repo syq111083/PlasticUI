@@ -34,8 +34,11 @@
                     <plastic:Button Theme="Info"/>
                     <plastic:Button Theme="Light"/>
                     <plastic:Button Theme="Dark"/>
-                    <plastic:TextBox Width="200" />
-                    <plastic:ComboBox Width="200" ItemsSource="{Binding Strs}" />
+                    <plastic:TextBox Width="200" 
+                                     />
+                    <plastic:ComboBox Width="200" 
+                                      ItemsSource="{Binding Strs}"
+                                      />
                     <plastic:CheckBox />
                     <plastic:Range Width="200" Margin="5,0,0,0" />
                 </WrapPanel>
