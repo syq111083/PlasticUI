@@ -35,23 +35,6 @@ namespace Plastic
             VisualStateManager.GoToState(this, "Focused", true);
         }
 
-
-        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonUp(e);
-            //if (IsChecked == true)
-            //{
-            //    IsChecked= false;
-            //    VisualStateManager.GoToState(this, "Selected", true);
-            //}
-            //else
-            //{
-            //    IsChecked= true;
-            //    VisualStateManager.GoToState(this, "Unselected", true);
-            //}
-
-        }
-
         public override void OnApplyTemplate()
         {
             Focusable = true;

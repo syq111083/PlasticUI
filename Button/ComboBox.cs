@@ -24,7 +24,6 @@ namespace Plastic
         }
 
         private TextBox tb0;
-
         public TextBox Tb0
         {
             get { return tb0; }
@@ -32,7 +31,6 @@ namespace Plastic
         }
 
         private Popup popup0;
-
         public Popup Popup0
         {
             get { return popup0; }
@@ -50,7 +48,6 @@ namespace Plastic
         private void Popup0_GotFocus(object sender, RoutedEventArgs e)
         {
             Tb0.Focus();
-
         }
 
         protected override void OnDropDownOpened(EventArgs e)
@@ -64,9 +61,5 @@ namespace Plastic
             base.OnGotFocus(e);
             Tb0.Focus();
         }
-
-
-
-
     }
 }

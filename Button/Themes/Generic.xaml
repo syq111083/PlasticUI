@@ -389,31 +389,30 @@
     <Style TargetType="{x:Type local:TextBox}">
         <Setter Property="BorderBrush" Value="#e6e9ec" />
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Height" Value="45.3"/>
-        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <!--<Setter Property="Height" Value="45.3"/>-->
+        <Setter Property="Height" Value="58"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextBox}">
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal">
-                                </VisualState>
-                                <VisualState x:Name="MouseOver">
-                                </VisualState>
-                                <VisualState x:Name="Disabled"></VisualState>
-                                <VisualState x:Name="ReadOnly"></VisualState>
-                            </VisualStateGroup>
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused">
                                     <Storyboard>
                                         <DoubleAnimation Duration="0:0:0.3" 
-                                                         To="1"
+                                                         To="0.9"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Storyboard.TargetName="out_border"/>
                                         <ColorAnimation Duration="0:0:0.3" 
-                                                        To="#86b7fe"
+                                                        To="#c2dbfe"
                                                         Storyboard.TargetName="out_border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
+                                        <ColorAnimation Duration="0:0:0.3" 
+                                                        To="#86b7fe"
+                                                        Storyboard.TargetName="inner_border"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
                                     </Storyboard>
                                 </VisualState>
@@ -427,6 +426,72 @@
                                                         To="Transparent" 
                                                         Storyboard.TargetName="out_border"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
+
+                                    </Storyboard>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                            <VisualStateGroup>
+                                <VisualState x:Name="WithoutText">
+                                    <Storyboard>
+                                        <ThicknessAnimation Duration="0:0:0.1"
+                                                            To="2,0,0,0"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="tb0"/>
+                                        <ThicknessAnimation Duration="0:0:0.1"
+                                                            To="0,0,0,0" 
+                                                            Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="PART_ContentHost"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="WithText">
+                                    <Storyboard>
+                                        <ThicknessAnimation Duration="0:0:0.1"
+                                                            To="2,0,0,16" 
+                                                            Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="tb0"/>
+                                        <ThicknessAnimation Duration="0:0:0.1"
+                                                            To="0,16,0,0" 
+                                                            Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="PART_ContentHost"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup>
+                                <VisualState x:Name="LabelUp">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                         To="16"
+                                                         Storyboard.TargetProperty="FontSize"
+                                                         Storyboard.TargetName="tb0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="LabelDown">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1"
+                                                         To="14"
+                                                         Storyboard.TargetProperty="FontSize"
+                                                         Storyboard.TargetName="tb0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup>
+                                <VisualState x:Name="LabelGray">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.1"
+                                                    BeginTime="0:0:0.2"
+                                                    To="#6f7174"
+                                                    Storyboard.TargetName="tb0"
+                                                    Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="LabelBlack">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.1"
+                                                    BeginTime="0:0:0.2"
+                                                    To="Black"
+                                                    Storyboard.TargetName="tb0"
+                                                    Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -436,41 +501,46 @@
                                 <VisualState x:Name="InvalidUnfocused"></VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border CornerRadius="6"
+                        <Border CornerRadius="8"
                                 BorderThickness="4"
+                                Background="Transparent"
                                 Name="out_border"
                                 Opacity="{TemplateBinding OutBorderOpacity}"
                                 BorderBrush="#c2dbfe">
                         </Border>
-                        <Grid>
+                        <Grid Height="{TemplateBinding Height}">
                             <Border Background="{TemplateBinding Background}"
                                     CornerRadius="6"
-                                    Margin="4,3,4,3"
+                                    IsHitTestVisible="True"
+                                    Name="inner_border"
+                                    Margin="4"
                                     Padding="12,6,12,6"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}">
                                 <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition Width="auto" />
-                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Name="tb0"
+                                               FontSize="16" 
+                                               Text="{TemplateBinding FloatingLabel}" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Left"
+                                               FontFamily="Microsoft YaHei UI"/>
                                     <ScrollViewer x:Name="PART_ContentHost" 
-                                              VerticalAlignment="Center"/>
-                                    <TextBlock VerticalAlignment="Center"
-                                               Name="tb1"
-                                               Margin="10,0,0,0"
-                                               FontWeight="ExtraBold"
-                                               Text="∨"
-                                               Grid.Column="1">
-                                    </TextBlock>
+                                                  FontSize="{TemplateBinding FontSize}"
+                                                  HorizontalAlignment="Left"
+                                                  Margin="0"
+                                                  FontFamily="{TemplateBinding FontFamily}"
+                                                  VerticalAlignment="Center"/>
                                 </Grid>
-
                             </Border>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsComboBox" Value="False">
-                            <Setter TargetName="tb1" Property="Visibility" Value="Collapsed" />
+                        <Trigger Property="FloatingLabel" Value="">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="tb0" />
+                            <Setter Property="Height" Value="45.3"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="IBeam"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -496,11 +566,11 @@
                         <local:TextBox x:Name="tb0"
                                        IsReadOnly="True"
                                        Focusable="True"
-                                       IsComboBox="True"
                                        Margin="12,0,12,0"/>
                         <Popup x:Name="popup0"
                                Placement="Bottom"
                                Focusable="True"
+                               Margin="0"
                                IsOpen="{TemplateBinding IsDropDownOpen}"
                                AllowsTransparency="True"
                                PopupAnimation="Fade">
@@ -530,14 +600,6 @@
                             </Grid>
                         </Popup>
                     </Grid>
-                    <!--<ControlTemplate.Triggers>
-                        <Trigger  Property="IsDropDownOpen" Value="True">
-                            <Setter TargetName="PART_EditableTextBox" Property="Tag" Value="1"/>
-                        </Trigger>
-                        <Trigger  Property="IsDropDownOpen" Value="False">
-                            <Setter TargetName="PART_EditableTextBox" Property="Tag" Value="0"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -752,7 +814,7 @@
                                                         Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
                                                         Duration="0:0:0.2"
                                                         To="#c2dbfe"/>
-                                    </Storyboard>                                    
+                                    </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="FocusSates">
@@ -778,15 +840,15 @@
                                 BorderThickness="3"
                                 BorderBrush="Transparent"
                                 x:Name="border" >
-                        <Ellipse Fill="{TemplateBinding Background}"
+                            <Ellipse Fill="{TemplateBinding Background}"
                                  Width="16"
                                  x:Name="ellipse"
                                  Height="16">
-                        </Ellipse>
+                            </Ellipse>
 
-                    </Border>
+                        </Border>
                     </Grid>
-                   
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

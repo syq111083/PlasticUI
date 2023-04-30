@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,17 +45,42 @@ namespace Plastic
         protected override void OnGotFocus(RoutedEventArgs e)
         {
             base.OnGotFocus(e);
+
+            if (string.IsNullOrEmpty(FloatingLabel))
+                return;
+
             VisualStateManager.GoToState(this, "Focused", true);
+            VisualStateManager.GoToState(this, "WithText", true);
+            VisualStateManager.GoToState(this, "LabelDown", true);
+            VisualStateManager.GoToState(this, "LabelGray", true);
         }
 
-
-
-        public static readonly DependencyProperty IsComboBoxProperty = DependencyProperty.Register("IsComboBox", typeof(bool), typeof(TextBox), new PropertyMetadata(false));
-
-        public bool IsComboBox
+        protected override void OnLostFocus(RoutedEventArgs e)
         {
-            get { return (bool)GetValue(IsComboBoxProperty); }
-            set { SetValue(IsComboBoxProperty, value);}
+            base.OnLostFocus(e);
+            if (string.IsNullOrEmpty(FloatingLabel))
+                return;
+
+            if (!string.IsNullOrEmpty(this.Text))
+            {
+                VisualStateManager.GoToState(this, "WithText", true);
+                VisualStateManager.GoToState(this, "LabelDown", true);
+                VisualStateManager.GoToState(this, "LabelGray", true);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, "WithoutText", true);
+                VisualStateManager.GoToState(this, "LabelUp", true);
+                VisualStateManager.GoToState(this, "LabelBlack", true);
+            }
+        }
+
+        public static readonly DependencyProperty FloatingLabelProperty = DependencyProperty.Register("FloatingLabel", typeof(string), typeof(TextBox));
+
+        public string FloatingLabel
+        {
+            get => (string)GetValue(FloatingLabelProperty);
+            set => SetValue(FloatingLabelProperty, value);
         }
     }
 }

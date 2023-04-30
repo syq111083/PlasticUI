@@ -9,6 +9,7 @@
         xmlns:plastic="clr-namespace:Plastic;assembly=Plastic"
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         Height="600" 
         Width="800">
     <Window.DataContext>
@@ -23,6 +24,10 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <ScrollViewer>
             <StackPanel>
                 <WrapPanel>
@@ -33,12 +38,9 @@
                     <plastic:Button Theme="Warning" />
                     <plastic:Button Theme="Info"/>
                     <plastic:Button Theme="Light"/>
-                    <plastic:Button Theme="Dark"/>
-                    <plastic:TextBox Width="200" 
-                                     />
-                    <plastic:ComboBox Width="200" 
-                                      ItemsSource="{Binding Strs}"
-                                      />
+                    <plastic:Button Theme="Dark" />
+                    <plastic:TextBox Width="200" FloatingLabel="姓名" />
+                    <plastic:TextBox Width="200" Height="45.3"/>
                     <plastic:CheckBox />
                     <plastic:Range Width="200" Margin="5,0,0,0" />
                 </WrapPanel>
@@ -46,6 +48,21 @@
                 
             </StackPanel>
         </ScrollViewer>
+        <Canvas Grid.Row="1">
+            <Border BorderThickness="2" BorderBrush="Black">
+                <i:Interaction.Behaviors>
+                    <i:MouseDragElementBehavior ConstrainToParentBounds="True" />
+                </i:Interaction.Behaviors>
+                <Rectangle Fill="Red" Width="100" Height="100">
 
+            </Rectangle>            
+            </Border>
+            <!--<Button Background="Blue" Width="100" Height="100">
+                <i:Interaction.Behaviors>
+                    <i:MouseDragElementBehavior />
+                </i:Interaction.Behaviors>
+            </Button>-->
+
+        </Canvas>
     </Grid>
 </Window>
