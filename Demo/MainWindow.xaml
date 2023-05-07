@@ -24,45 +24,37 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
         <ScrollViewer>
             <StackPanel>
-                <WrapPanel>
-                    <plastic:Button Text="{Binding Text}"/>
-                    <plastic:Button Theme="Secondary"/>
-                    <plastic:Button Theme="Success"/>
-                    <plastic:Button Theme="Danger"/>
-                    <plastic:Button Theme="Warning" />
-                    <plastic:Button Theme="Info"/>
-                    <plastic:Button Theme="Light"/>
-                    <plastic:Button Theme="Dark" />
-                    <plastic:TextBox Width="200" FloatingLabel="姓名" />
-                    <plastic:TextBox Width="200" Height="45.3"/>
-                    <plastic:CheckBox />
-                    <plastic:Range Width="200" Margin="5,0,0,0" />
-                </WrapPanel>
-
-                
+                <plastic:Accordion Header="Button" RenderTransformOrigin="0.5,0.5">
+                    <WrapPanel>
+                        <plastic:Button Text="{Binding Text}"/>
+                        <plastic:Button Theme="Secondary"/>
+                        <plastic:Button Theme="Success"/>
+                        <plastic:Button Theme="Danger"/>
+                        <plastic:Button Theme="Warning" />
+                        <plastic:Button Theme="Info"/>
+                        <plastic:Button Theme="Light"/>
+                        <plastic:Button Theme="Dark" />
+                    </WrapPanel>
+                </plastic:Accordion>
+                <plastic:Accordion Header="Input">
+                    <WrapPanel>
+                        <plastic:TextBox Width="200" FloatingLabel="姓名" />
+                        <plastic:TextBox Width="200" Height="45.3"/>
+                    </WrapPanel>
+                </plastic:Accordion>
+                <plastic:Accordion Header="CheckBox">
+                    <WrapPanel>
+                        <plastic:CheckBox />
+                    </WrapPanel>
+                </plastic:Accordion>
+                <plastic:Accordion Header="Range">
+                    <WrapPanel>
+                        <plastic:Range Width="200" Margin="5,0,0,0" />
+                    </WrapPanel>
+                </plastic:Accordion>
             </StackPanel>
         </ScrollViewer>
-        <Canvas Grid.Row="1">
-            <Border BorderThickness="2" BorderBrush="Black">
-                <i:Interaction.Behaviors>
-                    <i:MouseDragElementBehavior ConstrainToParentBounds="True" />
-                </i:Interaction.Behaviors>
-                <Rectangle Fill="Red" Width="100" Height="100">
-
-            </Rectangle>            
-            </Border>
-            <!--<Button Background="Blue" Width="100" Height="100">
-                <i:Interaction.Behaviors>
-                    <i:MouseDragElementBehavior />
-                </i:Interaction.Behaviors>
-            </Button>-->
-
-        </Canvas>
     </Grid>
 </Window>

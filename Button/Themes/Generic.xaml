@@ -2,11 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Plastic">
 
+
     <SolidColorBrush x:Key="borderBrush" Color="#FF375E85" />
     <SolidColorBrush x:Key="backGround" Color="#0d6efd"/>
     <SolidColorBrush x:Key="backGround1" Color="#0b5ed7"/>
     <SolidColorBrush x:Key="backGround2" Color="#FF4E87B9"/>
+    <SolidColorBrush x:Key="blueBorder" Color="#E5C2DBFE" />
     <SolidColorBrush x:Key="pressed" Color="#FF375E81"/>
+    <Geometry x:Key="down">
+        M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z
+    </Geometry>
 
     <FontFamily x:Key="fontFamily" >
         microsoft junhei ui
@@ -445,12 +450,12 @@
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="WithText">
-                                    <Storyboard>
-                                        <ThicknessAnimation Duration="0:0:0.1"
+                                    <Storyboard Timeline.DesiredFrameRate="60">
+                                        <ThicknessAnimation Duration="0:0:0.3"
                                                             To="2,0,0,16" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="tb0"/>
-                                        <ThicknessAnimation Duration="0:0:0.1"
+                                        <ThicknessAnimation Duration="0:0:0.3"
                                                             To="0,16,0,0" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="PART_ContentHost"/>
@@ -467,7 +472,7 @@
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="LabelDown">
-                                    <Storyboard>
+                                    <Storyboard Timeline.DesiredFrameRate="60">
                                         <DoubleAnimation Duration="0:0:0.1"
                                                          To="14"
                                                          Storyboard.TargetProperty="FontSize"
@@ -479,10 +484,10 @@
                                 <VisualState x:Name="LabelGray">
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.1"
-                                                    BeginTime="0:0:0.2"
-                                                    To="#6f7174"
-                                                    Storyboard.TargetName="tb0"
-                                                    Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
+                                                        BeginTime="0:0:0.2"
+                                                        To="#6f7174"
+                                                        Storyboard.TargetName="tb0"
+                                                        Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="LabelBlack">
@@ -881,6 +886,178 @@
                             </Track.Thumb>
                         </Track>
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ToggleButton" x:Key="accordionButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="Transparent"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:Accordion">
+        <Setter Property="BorderBrush" Value="#dee2e6"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="Margin" Value="3"/>
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Accordion">
+                    <Grid MinHeight="{TemplateBinding MinHeight}"
+                          Background="Transparent"
+                          Focusable="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition x:Name="ContentRow"
+                                           Height="0" />
+                        </Grid.RowDefinitions>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="Expand">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2"
+                                                        To="#cfe2ff"
+                                                        Storyboard.TargetName="Border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2"
+                                                        To="#aac5ec"
+                                                        Storyboard.TargetName="Border"
+                                                        Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"/>
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                         To="1"
+                                                         Storyboard.TargetName="Content"
+                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"/>                                        
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                         To="1"
+                                                         Storyboard.TargetName="Content"
+                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"/>
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                         To="-180"
+                                                         Storyboard.TargetName="angle"
+                                                         Storyboard.TargetProperty="Angle"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Collapse">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2"
+                                                        To="Transparent"
+                                                        Storyboard.TargetName="Border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                         To="0"
+                                                         Storyboard.TargetName="angle"
+                                                         Storyboard.TargetProperty="Angle"/>
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                         To="1"
+                                                         Storyboard.TargetName="Content"
+                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"/>
+                                        <DoubleAnimation Duration="0:0:0.2"
+                                                         To="0"
+                                                         Storyboard.TargetName="Content"
+                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup>
+                                <VisualState x:Name="BorderChange">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2"
+                                                        To="#E5C2DBFE"
+                                                        Storyboard.TargetName="BorderOut"
+                                                        Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"/>
+                                        <ColorAnimation Duration="0:0:0.2"
+                                                        To="#aac5ec"
+                                                        Storyboard.TargetName="Border"
+                                                        Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="BorderResume">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2"
+                                                        To="Transparent"
+                                                        Storyboard.TargetName="BorderOut"
+                                                        Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"/>
+                                        <ColorAnimation Duration="0:0:0.2"
+                                                        To="Transparent"
+                                                        AutoReverse="True"
+                                                        RepeatBehavior="Forever"
+                                                        Storyboard.TargetName="BorderOut"
+                                                        Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="BorderOut"
+                                BorderThickness="3"
+                                CornerRadius="5,5,0,0"
+                                BorderBrush="Transparent">
+                            <Border x:Name="Border"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                BorderThickness="1"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ToggleButton IsChecked="{Binding IsExpanded,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                                                  Grid.ColumnSpan="2"
+                                                  Style="{StaticResource accordionButton}"/>
+                                    <ContentPresenter Grid.Column="0"
+                                                      ContentSource="Header"
+                                                      VerticalAlignment="Center"
+                                                      TextElement.FontSize="16"
+                                                      Margin="20,0"
+                                                      IsHitTestVisible="False"
+                                                      RecognizesAccessKey="True" />
+                                    <Path Grid.Column="1"
+                                          Data="{StaticResource down}" 
+                                          Name="path"
+                                          VerticalAlignment="Center" 
+                                          HorizontalAlignment="Center"
+                                          IsHitTestVisible="False" 
+                                          Margin="0,0,8,0"
+                                          Stretch="Uniform"
+                                          RenderTransformOrigin="0.5,0.5"
+                                          StrokeThickness="1"
+                                          Stroke="#707375" >
+                                        <Path.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                <RotateTransform Angle="0" x:Name="angle"/>
+                                            </TransformGroup>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Border>
+                        </Border>
+                        <Border Grid.Row="1"
+                                Name="Content"
+                                BorderThickness="1"
+                                Margin="4,0"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Tag="{Binding RelativeSource={RelativeSource Mode=Self},Path=Height}"
+                                CornerRadius="0,0,5,5" >
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="0" />
+                            </Border.RenderTransform>
+                            <ContentPresenter Margin="4" x:Name="present"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="True">
+                            <Setter TargetName="ContentRow" Property="Height" Value="{Binding Height, ElementName=Content}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
