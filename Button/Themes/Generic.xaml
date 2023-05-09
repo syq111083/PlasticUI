@@ -391,7 +391,8 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-    <Style TargetType="{x:Type local:TextBox}">
+    
+    <Style TargetType="{x:Type local:Input}">
         <Setter Property="BorderBrush" Value="#e6e9ec" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -401,7 +402,7 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:TextBox}">
+                <ControlTemplate TargetType="{x:Type local:Input}">
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="FocusStates">
@@ -451,11 +452,11 @@
                                 </VisualState>
                                 <VisualState x:Name="WithText">
                                     <Storyboard Timeline.DesiredFrameRate="60">
-                                        <ThicknessAnimation Duration="0:0:0.3"
+                                        <ThicknessAnimation Duration="0:0:0.2"
                                                             To="2,0,0,16" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="tb0"/>
-                                        <ThicknessAnimation Duration="0:0:0.3"
+                                        <ThicknessAnimation Duration="0:0:0.2"
                                                             To="0,16,0,0" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="PART_ContentHost"/>
@@ -552,39 +553,53 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="{x:Type local:ComboBox}">
+
+    <ControlTemplate x:Key="inputToggleBtn" TargetType="ToggleButton">
+        <Grid Background="Transparent">
+            <Path Stretch="Uniform" HorizontalAlignment="Right" Width="10" Margin="16,0" Data="{StaticResource down}" Stroke="#595e63" Fill="#595e63" />
+        </Grid>
+    </ControlTemplate>
+    
+    <Style TargetType="{x:Type local:Select}">
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="45.3" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:ComboBox}">
-                    <Grid Background="Transparent">
+                <ControlTemplate TargetType="{x:Type local:Select}">
+                    <Grid Background="Transparent"
+                          Height="{TemplateBinding Height}">
+                        <ToggleButton ClickMode="Press"
+                                      Template="{StaticResource inputToggleBtn}"
+                                      IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"/>
                         <ContentPresenter x:Name="ContentSite"
                                           Content="{TemplateBinding SelectionBoxItem}"
                                           ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                          Margin="31,0,0,0"
+                                          Margin="16,0"
                                           IsHitTestVisible="False"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Left">
                         </ContentPresenter>
-                        <local:TextBox x:Name="tb0"
-                                       IsReadOnly="True"
-                                       Focusable="True"
-                                       Margin="12,0,12,0"/>
+                        <local:Input x:Name="tb0"
+                                     IsReadOnly="True"
+                                     Height="{TemplateBinding Height}"
+                                     Focusable="True"
+                                     IsHitTestVisible="False"
+                                     Margin="0"/>
                         <Popup x:Name="popup0"
                                Placement="Bottom"
                                Focusable="True"
-                               Margin="0"
                                IsOpen="{TemplateBinding IsDropDownOpen}"
                                AllowsTransparency="True"
                                PopupAnimation="Fade">
                             <Grid SnapsToDevicePixels="True"
-                                  MinWidth="{TemplateBinding ActualWidth}"
+                                  Margin="0,6"
+                                  Width="{TemplateBinding ActualWidth}"
+                                  MinWidth="{TemplateBinding MinWidth}"
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                 <Border x:Name="DropDownBorder"
                                         CornerRadius="6"
-                                        Margin="16,0,16,0"
+                                        Margin="3,0"
                                         BorderThickness="1">
                                     <Border.BorderBrush>
                                         <SolidColorBrush Color="#a0a0a0" />
@@ -593,13 +608,13 @@
                                         <SolidColorBrush Color="White" />
                                     </Border.Background>
                                 </Border>
-                                <ScrollViewer Margin="12,0,12,0"
+                                <ScrollViewer Margin="0,3"
                                               MinWidth="20"
                                               VerticalScrollBarVisibility="Auto"
                                               SnapsToDevicePixels="True">
                                     <StackPanel KeyboardNavigation.DirectionalNavigation="Contained"
                                                 IsItemsHost="True"
-                                                Margin="6">
+                                                Margin="1">
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>
@@ -616,17 +631,13 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ComboBoxItem}">
                                 <Grid >
-                                    <Border Background="{TemplateBinding Background}">
-                                    </Border>
-                                    <ContentPresenter Margin="0,6,0,6"/>
+                                    <Border Background="{TemplateBinding Background}" Name="border" Margin="3,0"/>
+                                    <ContentPresenter Margin="8,4"/>
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                     <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#e0e0e6" />
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#e0e0e6"/>
                         </Trigger>

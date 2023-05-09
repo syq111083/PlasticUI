@@ -16,15 +16,15 @@ using System.Windows.Shapes;
 
 namespace Plastic
 {
-    public class ComboBox : System.Windows.Controls.ComboBox
+    public class Select : System.Windows.Controls.ComboBox
     {
-        static ComboBox()
+        static Select()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ComboBox), new FrameworkPropertyMetadata(typeof(ComboBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Select), new FrameworkPropertyMetadata(typeof(Select)));
         }
 
-        private TextBox tb0;
-        public TextBox Tb0
+        private Input tb0;
+        public Input Tb0
         {
             get { return tb0; }
             set { tb0 = value; }
@@ -40,7 +40,7 @@ namespace Plastic
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            Tb0 = GetTemplateChild("tb0") as TextBox;
+            Tb0 = GetTemplateChild("tb0") as Input;
             Popup0 = GetTemplateChild("popup0") as Popup;
             Popup0.GotFocus += Popup0_GotFocus;
         }

@@ -10,8 +10,8 @@
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        Height="600" 
-        Width="800">
+        Height="720" 
+        Width="1280">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
@@ -19,7 +19,7 @@
         <Style TargetType="plastic:Button">
             <Setter Property="Margin" Value="10,3" />
         </Style>
-        <Style TargetType="plastic:TextBox">
+        <Style TargetType="plastic:Input">
             <Setter Property="Margin" Value="10,3,10,3" />
         </Style>
     </Window.Resources>
@@ -40,8 +40,17 @@
                 </plastic:Accordion>
                 <plastic:Accordion Header="Input">
                     <WrapPanel>
-                        <plastic:TextBox Width="200" FloatingLabel="姓名" />
-                        <plastic:TextBox Width="200" Height="45.3"/>
+                        <plastic:Input Width="200" FloatingLabel="姓名" />
+                        <plastic:Input Width="200" Height="45.3"/>
+                    </WrapPanel>
+                </plastic:Accordion>                
+                <plastic:Accordion Header="Select">
+                    <WrapPanel>
+                        <plastic:Select Width="100">
+                            <ComboBoxItem>A</ComboBoxItem>
+                            <ComboBoxItem>B</ComboBoxItem>
+                            <ComboBoxItem>C</ComboBoxItem>
+                        </plastic:Select>
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="CheckBox">

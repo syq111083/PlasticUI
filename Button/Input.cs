@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 
 namespace Plastic
 {
-    public class TextBox : System.Windows.Controls.TextBox
+    public class Input : System.Windows.Controls.TextBox
     {
-        static TextBox()
+        static Input()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(TextBox), new FrameworkPropertyMetadata(typeof(TextBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Input), new FrameworkPropertyMetadata(typeof(Input)));
         }
 
-        public static readonly DependencyProperty OutBorderOpacityProperty = DependencyProperty.Register("OutBorderOpacity", typeof(double), typeof(TextBox), new PropertyMetadata((double)0));
+        public static readonly DependencyProperty OutBorderOpacityProperty = DependencyProperty.Register("OutBorderOpacity", typeof(double), typeof(Input), new PropertyMetadata((double)0));
 
         public double OutBorderOpacity
         {
@@ -31,7 +31,7 @@ namespace Plastic
             set { SetValue(OutBorderOpacityProperty, value); }
         }
 
-        public static readonly DependencyProperty OnSelectingStatusProperty = DependencyProperty.Register("OnSelectingStatus", typeof(bool), typeof(TextBox), new PropertyMetadata(false));
+        public static readonly DependencyProperty OnSelectingStatusProperty = DependencyProperty.Register("OnSelectingStatus", typeof(bool), typeof(Input), new PropertyMetadata(false));
 
         public bool OnSelectingStatus
         {
@@ -75,7 +75,7 @@ namespace Plastic
             }
         }
 
-        public static readonly DependencyProperty FloatingLabelProperty = DependencyProperty.Register("FloatingLabel", typeof(string), typeof(TextBox));
+        public static readonly DependencyProperty FloatingLabelProperty = DependencyProperty.Register("FloatingLabel", typeof(string), typeof(Input));
 
         public string FloatingLabel
         {
