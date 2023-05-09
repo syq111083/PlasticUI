@@ -562,6 +562,7 @@
     
     <Style TargetType="{x:Type local:Select}">
         <Setter Property="FontSize" Value="16" />
+        <Setter Property="MinWidth" Value="100"/>
         <Setter Property="Height" Value="45.3" />
         <Setter Property="Template">
             <Setter.Value>
@@ -651,9 +652,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
     <Style TargetType="{x:Type local:CheckBox}">
-        <Setter Property="Width" Value="24"/>
-        <Setter Property="Height" Value="24"/>
         <Setter Property="BorderWidth" Value="16"/>
         <Setter Property="BorderHeight" Value="16"/>
         <Setter Property="FontSize" Value="12" />
@@ -771,6 +771,10 @@
                         </VisualStateManager.VisualStateGroups>
                         <BulletDecorator.Bullet>
                             <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
                                 <Rectangle Stroke="#dfe3e7"
                                            Height="{TemplateBinding BorderHeight}"
                                            Width="{TemplateBinding BorderWidth}"
@@ -785,7 +789,7 @@
                                         x:Name="border"
                                         Background="#0d6efd"
                                         BorderBrush="#c2dbfe"
-                                        Padding="4"
+                                        Padding="0"
                                         BorderThickness="4">
                                     <Grid>
                                         <Rectangle Fill="#0d6efd"
@@ -802,6 +806,12 @@
                                                    VerticalAlignment="Center"/>
                                     </Grid>
                                 </Border>
+                                <ContentPresenter Content="{TemplateBinding Content}" 
+                                                  Margin="4,0"
+                                                  Grid.Column="1"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  TextElement.FontSize="16"/>
                             </Grid>
                         </BulletDecorator.Bullet>
                     </BulletDecorator>

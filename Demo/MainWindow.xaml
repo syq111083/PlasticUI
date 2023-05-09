@@ -55,7 +55,7 @@
                 </plastic:Accordion>
                 <plastic:Accordion Header="CheckBox">
                     <WrapPanel>
-                        <plastic:CheckBox />
+                        <plastic:CheckBox Content="Check"/>
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="Range">
