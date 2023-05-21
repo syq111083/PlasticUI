@@ -9,6 +9,14 @@
     <SolidColorBrush x:Key="backGround2" Color="#FF4E87B9"/>
     <SolidColorBrush x:Key="blueBorder" Color="#E5C2DBFE" />
     <SolidColorBrush x:Key="pressed" Color="#FF375E81"/>
+    <SolidColorBrush x:Key="primary" Color="#0d6efd"/>
+    <SolidColorBrush x:Key="secondary" Color="#6c757d"/>
+    <SolidColorBrush x:Key="success" Color="#198754"/>
+    <SolidColorBrush x:Key="danger" Color="#dc3545"/>
+    <SolidColorBrush x:Key="warning" Color="#ffc107"/>
+    <SolidColorBrush x:Key="info" Color="#0dcaf0"/>
+    <SolidColorBrush x:Key="light" Color="#f8f9fa"/>
+    <SolidColorBrush x:Key="dark" Color="#212529"/>
     <Geometry x:Key="down">
         M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z
     </Geometry>
@@ -22,6 +30,7 @@
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontFamily" Value="{StaticResource fontFamily}" />
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Content" Value="圆角按钮"/>
         <Setter Property="CornerRadius" Value="6"/>
         <Setter Property="Foreground" Value="#fff" />
         <Setter Property="Height" Value="45.3"/>
@@ -31,9 +40,21 @@
                     <Border CornerRadius="{TemplateBinding CornerRadius}"
                             Background="{TemplateBinding Background}"
                             Margin="3"
+                            Name="border"
                             BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.5"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Grid>
-                            <ContentPresenter Content="{TemplateBinding Text}"
+                            <ContentPresenter Content="{TemplateBinding Content}"
                                               Margin="6,3"
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"/>
@@ -391,7 +412,179 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-    
+
+    <Style TargetType="{x:Type local:OutlineButton}">
+        <Setter Property="BorderBrush" Value="#0d6efd"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="{StaticResource fontFamily}" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="#fff" />
+        <Setter Property="Height" Value="45.3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Button}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="normal"/>
+                                <VisualState x:Name="prime">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#0d6efd"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="content"
+                                                        Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                        To="White"/>
+                                    </Storyboard>
+                                </VisualState>                                
+                                <VisualState x:Name="secondary">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#6c757d"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="content"
+                                                        Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                        To="White"/>
+                                    </Storyboard>
+                                </VisualState>                                
+                                <VisualState x:Name="success">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#198754"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="content"
+                                                        Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                        To="White"/>
+                                    </Storyboard>
+                                </VisualState>                                
+                                <VisualState x:Name="danger">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#dc3545"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="content"
+                                                        Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                        To="White"/>
+                                    </Storyboard>
+                                </VisualState>                                
+                                <VisualState x:Name="warning">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#ffc107"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="content"
+                                                        Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                        To="Black"/>
+                                    </Storyboard>
+                                </VisualState>                                
+                                <VisualState x:Name="info">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#0dcaf0"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="content"
+                                                        Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                        To="White"/>
+                                    </Storyboard>
+                                </VisualState>                               
+                                <VisualState x:Name="light">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#f8f9fa"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="content"
+                                                        Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                        To="Black"/>
+                                    </Storyboard>
+                                </VisualState>                         
+                                <VisualState x:Name="dark">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#212529"/>                                        
+                                        <ColorAnimation Duration="0:0:0.2" 
+                                                        Storyboard.TargetName="content"
+                                                        Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                        To="White"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.6"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border CornerRadius="6"
+                                Background="{TemplateBinding Background}"
+                                Margin="3"
+                                Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  Name="content"
+                                                  Margin="6,3"
+                                                  RecognizesAccessKey="True"
+                                                  TextElement.Foreground="{TemplateBinding BorderBrush}"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center" >
+                                </ContentPresenter>
+
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Theme" Value="Secondary">
+                <Setter Property="BorderBrush" Value="{StaticResource secondary}" />
+            </Trigger>            
+            <Trigger Property="Theme" Value="Primary">
+                <Setter Property="BorderBrush" Value="{StaticResource primary}" />
+            </Trigger>            
+            <Trigger Property="Theme" Value="Danger">
+                <Setter Property="BorderBrush" Value="{StaticResource danger}" />
+            </Trigger>            
+            <Trigger Property="Theme" Value="Dark">
+                <Setter Property="BorderBrush" Value="{StaticResource dark}" />
+            </Trigger>            
+            <Trigger Property="Theme" Value="Info">
+                <Setter Property="BorderBrush" Value="{StaticResource info}" />
+            </Trigger>            
+            <Trigger Property="Theme" Value="Success">
+                <Setter Property="BorderBrush" Value="{StaticResource success}" />
+            </Trigger>            
+            <Trigger Property="Theme" Value="Warning">
+                <Setter Property="BorderBrush" Value="{StaticResource warning}" />
+            </Trigger>            
+            <Trigger Property="Theme" Value="Light">
+                <Setter Property="BorderBrush" Value="{StaticResource light}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type local:Input}">
         <Setter Property="BorderBrush" Value="#e6e9ec" />
         <Setter Property="BorderThickness" Value="1"/>
@@ -511,6 +704,7 @@
                                 BorderThickness="4"
                                 Background="Transparent"
                                 Name="out_border"
+                                IsHitTestVisible="False"
                                 Opacity="{TemplateBinding OutBorderOpacity}"
                                 BorderBrush="#c2dbfe">
                         </Border>
@@ -520,7 +714,6 @@
                                     IsHitTestVisible="True"
                                     Name="inner_border"
                                     Margin="4"
-                                    Padding="12,6,12,6"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}">
                                 <Grid>
@@ -529,10 +722,10 @@
                                                Text="{TemplateBinding FloatingLabel}" 
                                                VerticalAlignment="Center" 
                                                HorizontalAlignment="Left"
+                                               IsHitTestVisible="False"
                                                FontFamily="Microsoft YaHei UI"/>
                                     <ScrollViewer x:Name="PART_ContentHost" 
                                                   FontSize="{TemplateBinding FontSize}"
-                                                  HorizontalAlignment="Left"
                                                   Margin="0"
                                                   FontFamily="{TemplateBinding FontFamily}"
                                                   VerticalAlignment="Center"/>
@@ -559,7 +752,7 @@
             <Path Stretch="Uniform" HorizontalAlignment="Right" Width="10" Margin="16,0" Data="{StaticResource down}" Stroke="#595e63" Fill="#595e63" />
         </Grid>
     </ControlTemplate>
-    
+
     <Style TargetType="{x:Type local:Select}">
         <Setter Property="FontSize" Value="16" />
         <Setter Property="MinWidth" Value="100"/>
@@ -946,19 +1139,19 @@
                                         <ColorAnimation Duration="0:0:0.2"
                                                         To="#cfe2ff"
                                                         Storyboard.TargetName="Border"
-                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>                                        
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
                                         <ColorAnimation Duration="0:0:0.2"
                                                         To="#aac5ec"
                                                         Storyboard.TargetName="Border"
                                                         Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"/>
                                         <DoubleAnimation Duration="0:0:0.2"
                                                          To="1"
-                                                         Storyboard.TargetName="Content"
-                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"/>                                        
+                                                         Storyboard.TargetName="scale"
+                                                         Storyboard.TargetProperty="ScaleX"/>
                                         <DoubleAnimation Duration="0:0:0.2"
                                                          To="1"
-                                                         Storyboard.TargetName="Content"
-                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"/>
+                                                         Storyboard.TargetName="scale"
+                                                         Storyboard.TargetProperty="ScaleY"/>
                                         <DoubleAnimation Duration="0:0:0.2"
                                                          To="-180"
                                                          Storyboard.TargetName="angle"
@@ -977,12 +1170,12 @@
                                                          Storyboard.TargetProperty="Angle"/>
                                         <DoubleAnimation Duration="0:0:0.2"
                                                          To="1"
-                                                         Storyboard.TargetName="Content"
-                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"/>
+                                                         Storyboard.TargetName="scale"
+                                                         Storyboard.TargetProperty="ScaleX"/>
                                         <DoubleAnimation Duration="0:0:0.2"
                                                          To="0"
-                                                         Storyboard.TargetName="Content"
-                                                         Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"/>
+                                                         Storyboard.TargetName="scale"
+                                                         Storyboard.TargetProperty="ScaleY"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -1017,14 +1210,14 @@
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="BorderOut"
                                 BorderThickness="3"
-                                CornerRadius="5,5,0,0"
+                                CornerRadius="8,8,0,0"
                                 BorderBrush="Transparent">
                             <Border x:Name="Border"
-                                MinHeight="{TemplateBinding MinHeight}"
-                                BorderThickness="1"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="5">
+                                    MinHeight="{TemplateBinding MinHeight}"
+                                    BorderThickness="1"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="6">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -1069,7 +1262,10 @@
                                 Tag="{Binding RelativeSource={RelativeSource Mode=Self},Path=Height}"
                                 CornerRadius="0,0,5,5" >
                             <Border.RenderTransform>
-                                <ScaleTransform ScaleX="1" ScaleY="0" />
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1" ScaleY="0" x:Name="scale" />
+                                    <TranslateTransform Y="-3" />
+                                </TransformGroup>
                             </Border.RenderTransform>
                             <ContentPresenter Margin="4" x:Name="present"/>
                         </Border>
@@ -1077,6 +1273,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="True">
                             <Setter TargetName="ContentRow" Property="Height" Value="{Binding Height, ElementName=Content}" />
+                            <Setter TargetName="Border" Property="CornerRadius" Value="6,6,0,0"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

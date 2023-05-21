@@ -23,17 +23,6 @@ namespace Plastic
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Button), new FrameworkPropertyMetadata(typeof(Button)));
         }
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(Button), new PropertyMetadata("圆角按钮"));
-
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set
-            {
-                SetValue(TextProperty, value);
-            }
-        }
-
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(Button), new PropertyMetadata(new CornerRadius(6)));
 
         public CornerRadius CornerRadius

@@ -18,6 +18,9 @@
     <Window.Resources>
         <Style TargetType="plastic:Button">
             <Setter Property="Margin" Value="10,3" />
+        </Style>        
+        <Style TargetType="plastic:OutlineButton">
+            <Setter Property="Margin" Value="10,3" />
         </Style>
         <Style TargetType="plastic:Input">
             <Setter Property="Margin" Value="10,3,10,3" />
@@ -27,23 +30,37 @@
         <ScrollViewer>
             <StackPanel>
                 <plastic:Accordion Header="Button" RenderTransformOrigin="0.5,0.5">
-                    <WrapPanel>
-                        <plastic:Button Text="{Binding Text}"/>
-                        <plastic:Button Theme="Secondary"/>
-                        <plastic:Button Theme="Success"/>
-                        <plastic:Button Theme="Danger"/>
-                        <plastic:Button Theme="Warning" />
-                        <plastic:Button Theme="Info"/>
-                        <plastic:Button Theme="Light"/>
-                        <plastic:Button Theme="Dark" />
-                    </WrapPanel>
+                    <StackPanel>
+                        <WrapPanel>
+                            <plastic:Button />
+                            <plastic:Button Theme="Secondary"/>
+                            <plastic:Button Theme="Success"/>
+                            <plastic:Button Theme="Danger"/>
+                            <plastic:Button Theme="Warning" />
+                            <plastic:Button Theme="Info"/>
+                            <plastic:Button Theme="Light"/>
+                            <plastic:Button Theme="Dark" />
+                            <plastic:Button Theme="Primary" IsEnabled="False"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <plastic:OutlineButton Theme="Primary" Content="圆角按钮" />
+                            <plastic:OutlineButton Theme="Secondary" Content="圆角按钮" />
+                            <plastic:OutlineButton Theme="Success" Content="圆角按钮" />
+                            <plastic:OutlineButton Theme="Warning" Content="圆角按钮" />
+                            <plastic:OutlineButton Theme="Danger" Content="圆角按钮" />
+                            <plastic:OutlineButton Theme="Dark" Content="圆角按钮" />
+                            <plastic:OutlineButton Theme="Info" Content="圆角按钮" />
+                            <plastic:OutlineButton Theme="Light" Content="圆角按钮" />
+                            <plastic:OutlineButton Theme="Primary" IsEnabled="False" Content="圆角按钮" />
+                        </WrapPanel>
+                    </StackPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="Input">
                     <WrapPanel>
                         <plastic:Input Width="200" FloatingLabel="姓名" />
                         <plastic:Input Width="200" Height="45.3"/>
                     </WrapPanel>
-                </plastic:Accordion>                
+                </plastic:Accordion>
                 <plastic:Accordion Header="Select">
                     <WrapPanel>
                         <plastic:Select Width="100">
@@ -58,7 +75,14 @@
                         <plastic:CheckBox Content="Check"/>
                     </WrapPanel>
                 </plastic:Accordion>
-                <plastic:Accordion Header="Range">
+                <plastic:Accordion Header="Range" RenderTransformOrigin="0.5,0.5">
+                    <plastic:Accordion.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                        </TransformGroup>
+                    </plastic:Accordion.RenderTransform>
                     <WrapPanel>
                         <plastic:Range Width="200" Margin="5,0,0,0" />
                     </WrapPanel>
