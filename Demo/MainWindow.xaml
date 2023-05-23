@@ -6,7 +6,7 @@
         xmlns:viewmodel="clr-namespace:Demo.ViewModels"
         xmlns:local="clr-namespace:Demo"
         mc:Ignorable="d"
-        xmlns:plastic="clr-namespace:Plastic;assembly=Plastic"
+        xmlns:bootstrap="clr-namespace:Plastic;assembly=Plastic"
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -16,77 +16,80 @@
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <Style TargetType="plastic:Button">
-            <Setter Property="Margin" Value="10,3" />
-        </Style>        
-        <Style TargetType="plastic:OutlineButton">
+        <Style TargetType="bootstrap:Button">
             <Setter Property="Margin" Value="10,3" />
         </Style>
-        <Style TargetType="plastic:Input">
+        <Style TargetType="bootstrap:OutlineButton">
+            <Setter Property="Margin" Value="10,3" />
+        </Style>
+        <Style TargetType="bootstrap:Input">
             <Setter Property="Margin" Value="10,3,10,3" />
         </Style>
     </Window.Resources>
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <plastic:Accordion Header="Button" RenderTransformOrigin="0.5,0.5">
+                <bootstrap:Accordion Header="Button" RenderTransformOrigin="0.5,0.5">
                     <StackPanel>
                         <WrapPanel>
-                            <plastic:Button />
-                            <plastic:Button Theme="Secondary"/>
-                            <plastic:Button Theme="Success"/>
-                            <plastic:Button Theme="Danger"/>
-                            <plastic:Button Theme="Warning" />
-                            <plastic:Button Theme="Info"/>
-                            <plastic:Button Theme="Light"/>
-                            <plastic:Button Theme="Dark" />
-                            <plastic:Button Theme="Primary" IsEnabled="False"/>
+                            <bootstrap:Button />
+                            <bootstrap:Button Theme="Secondary"/>
+                            <bootstrap:Button Theme="Success"/>
+                            <bootstrap:Button Theme="Danger"/>
+                            <bootstrap:Button Theme="Warning" />
+                            <bootstrap:Button Theme="Info"/>
+                            <bootstrap:Button Theme="Light"/>
+                            <bootstrap:Button Theme="Dark" />
+                            <bootstrap:Button Theme="Primary" IsEnabled="False"/>
                         </WrapPanel>
                         <WrapPanel>
-                            <plastic:OutlineButton Theme="Primary" Content="圆角按钮" />
-                            <plastic:OutlineButton Theme="Secondary" Content="圆角按钮" />
-                            <plastic:OutlineButton Theme="Success" Content="圆角按钮" />
-                            <plastic:OutlineButton Theme="Warning" Content="圆角按钮" />
-                            <plastic:OutlineButton Theme="Danger" Content="圆角按钮" />
-                            <plastic:OutlineButton Theme="Dark" Content="圆角按钮" />
-                            <plastic:OutlineButton Theme="Info" Content="圆角按钮" />
-                            <plastic:OutlineButton Theme="Light" Content="圆角按钮" />
-                            <plastic:OutlineButton Theme="Primary" IsEnabled="False" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Primary" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Secondary" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Success" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Warning" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Danger" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Dark" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Info" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Light" Content="圆角按钮" />
+                            <bootstrap:OutlineButton Theme="Primary" IsEnabled="False" Content="圆角按钮" />
                         </WrapPanel>
                     </StackPanel>
-                </plastic:Accordion>
-                <plastic:Accordion Header="Input">
+                </bootstrap:Accordion>
+                <bootstrap:Accordion Header="Input">
                     <WrapPanel>
-                        <plastic:Input Width="200" FloatingLabel="姓名" />
-                        <plastic:Input Width="200" Height="45.3"/>
+                        <bootstrap:Input Width="200" FloatingLabelText="浮动标签" FloatingLabel="True" />
+                        <bootstrap:Input Width="200" />
+                        <bootstrap:Input Width="200" Prefix="True" />
+                        <bootstrap:Input Width="200" Suffix="True" />
+                        <bootstrap:Input Width="400" Suffix="True" Prefix="True" SuffixContent="后缀能有多长" />
                     </WrapPanel>
-                </plastic:Accordion>
-                <plastic:Accordion Header="Select">
+                </bootstrap:Accordion>
+                <bootstrap:Accordion Header="Select">
                     <WrapPanel>
-                        <plastic:Select Width="100">
+                        <bootstrap:Select Width="100">
                             <ComboBoxItem>A</ComboBoxItem>
                             <ComboBoxItem>B</ComboBoxItem>
                             <ComboBoxItem>C</ComboBoxItem>
-                        </plastic:Select>
+                        </bootstrap:Select>
                     </WrapPanel>
-                </plastic:Accordion>
-                <plastic:Accordion Header="CheckBox">
+                </bootstrap:Accordion>
+                <bootstrap:Accordion Header="CheckBox">
                     <WrapPanel>
-                        <plastic:CheckBox Content="Check"/>
+                        <bootstrap:CheckBox Content="Check"/>
                     </WrapPanel>
-                </plastic:Accordion>
-                <plastic:Accordion Header="Range" RenderTransformOrigin="0.5,0.5">
-                    <plastic:Accordion.RenderTransform>
+                </bootstrap:Accordion>
+                <bootstrap:Accordion Header="Range" RenderTransformOrigin="0.5,0.5">
+                    <bootstrap:Accordion.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
                             <RotateTransform/>
                         </TransformGroup>
-                    </plastic:Accordion.RenderTransform>
+                    </bootstrap:Accordion.RenderTransform>
                     <WrapPanel>
-                        <plastic:Range Width="200" Margin="5,0,0,0" />
+                        <bootstrap:Range Width="200" Margin="5,0,0,0" />
                     </WrapPanel>
-                </plastic:Accordion>
+                </bootstrap:Accordion>
             </StackPanel>
         </ScrollViewer>
     </Grid>

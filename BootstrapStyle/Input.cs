@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Plastic
+namespace BootstrapStyle
 {
     public class Input : System.Windows.Controls.TextBox
     {
@@ -42,43 +42,11 @@ namespace Plastic
             }
         }
 
-        public static readonly DependencyProperty PrefixProperty = DependencyProperty.Register("Prefix", typeof(bool), typeof(Input));
-
-        public bool Prefix
-        {
-            get => (bool)GetValue(PrefixProperty);
-            set => SetValue(PrefixProperty, value);
-        }
-
-        public static readonly DependencyProperty PrefixContentProperty = DependencyProperty.Register("PrefixContent", typeof(object), typeof(Input));
-
-        public object PrefixContent
-        {
-            get => (object)GetValue(PrefixContentProperty);
-            set => SetValue(PrefixContentProperty, value);
-        }
-
-        public static readonly DependencyProperty SuffixProperty = DependencyProperty.Register("Suffix", typeof(bool), typeof(Input));
-
-        public bool Suffix
-        {
-            get => (bool)GetValue(SuffixProperty);
-            set => SetValue(SuffixProperty, value);
-        }        
-        
-        public static readonly DependencyProperty SuffixContentProperty = DependencyProperty.Register("SuffixContent", typeof(object), typeof(Input));
-
-        public object SuffixContent
-        {
-            get => (bool)GetValue(SuffixContentProperty);
-            set => SetValue(SuffixContentProperty, value);
-        }
-
         protected override void OnGotFocus(RoutedEventArgs e)
         {
             base.OnGotFocus(e);
 
-            if (string.IsNullOrEmpty(FloatingLabelText))
+            if (string.IsNullOrEmpty(FloatingLabel))
                 return;
 
             VisualStateManager.GoToState(this, "Focused", true);
@@ -90,7 +58,7 @@ namespace Plastic
         protected override void OnLostFocus(RoutedEventArgs e)
         {
             base.OnLostFocus(e);
-            if (string.IsNullOrEmpty(FloatingLabelText))
+            if (string.IsNullOrEmpty(FloatingLabel))
                 return;
 
             if (!string.IsNullOrEmpty(this.Text))
@@ -107,21 +75,12 @@ namespace Plastic
             }
         }
 
-        public static readonly DependencyProperty FloatingLabelProperty = DependencyProperty.Register("FloatingLabel", typeof(bool), typeof(Input));
+        public static readonly DependencyProperty FloatingLabelProperty = DependencyProperty.Register("FloatingLabel", typeof(string), typeof(Input));
 
-        public bool FloatingLabel
+        public string FloatingLabel
         {
-            get=>(bool)GetValue(FloatingLabelProperty);
+            get => (string)GetValue(FloatingLabelProperty);
             set => SetValue(FloatingLabelProperty, value);
-        }
-
-
-        public static readonly DependencyProperty FloatingLabelTextProperty = DependencyProperty.Register("FloatingLabelText", typeof(string), typeof(Input));
-
-        public string FloatingLabelText
-        {
-            get => (string)GetValue(FloatingLabelTextProperty);
-            set => SetValue(FloatingLabelTextProperty, value);
         }
     }
 }
