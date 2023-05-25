@@ -58,7 +58,7 @@
                 <bootstrap:Accordion Header="Input">
                     <WrapPanel>
                         <bootstrap:Input Width="200" FloatingLabelText="浮动标签" FloatingLabel="True" />
-                        <bootstrap:Input Width="200" />
+                        <bootstrap:Input Width="200" PlaceHolder="Please Enter"/>
                         <bootstrap:Input Width="200" Prefix="True" />
                         <bootstrap:Input Width="200" Suffix="True" />
                         <bootstrap:Input Width="400" Suffix="True" Prefix="True" SuffixContent="后缀能有多长" />

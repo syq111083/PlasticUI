@@ -123,5 +123,13 @@ namespace Plastic
             get => (string)GetValue(FloatingLabelTextProperty);
             set => SetValue(FloatingLabelTextProperty, value);
         }
+
+        public static readonly DependencyProperty PlaceHolderProperty = DependencyProperty.Register("PlaceHolder",typeof(string), typeof(Input));
+
+        public string PlaceHolder
+        {
+            get => (string)GetValue(PlaceHolderProperty); 
+            set => SetValue(PlaceHolderProperty, value);
+        }
     }
 }
