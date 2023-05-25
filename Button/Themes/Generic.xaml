@@ -18,6 +18,7 @@
     <SolidColorBrush x:Key="info" Color="#0dcaf0"/>
     <SolidColorBrush x:Key="light" Color="#f8f9fa"/>
     <SolidColorBrush x:Key="dark" Color="#212529"/>
+    <SolidColorBrush x:Key="placeHolder" Color="#595c5f"/>
     <Geometry x:Key="down">
         M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z
     </Geometry>
@@ -655,6 +656,7 @@
         <Setter Property="PrefixContent" Value="前缀"/>
         <Setter Property="Suffix" Value="False"/>
         <Setter Property="SuffixContent" Value="后缀"/>
+        <Setter Property="PlaceHolder" Value="请输入"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Input}">
@@ -694,11 +696,11 @@
                                 <VisualState x:Name="WithoutText">
                                     <Storyboard>
                                         <ThicknessAnimation Duration="0:0:0.1"
-                                                            To="14,0"
+                                                            To="8,0"
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="tb0"/>
                                         <ThicknessAnimation Duration="0:0:0.1"
-                                                            To="12,0" 
+                                                            To="6,0" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="PART_ContentHost"/>
                                     </Storyboard>
@@ -706,11 +708,11 @@
                                 <VisualState x:Name="WithText">
                                     <Storyboard Timeline.DesiredFrameRate="60">
                                         <ThicknessAnimation Duration="0:0:0.2"
-                                                            To="14,0,0,16" 
+                                                            To="8,0,0,16" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="tb0"/>
                                         <ThicknessAnimation Duration="0:0:0.2"
-                                                            To="12,16,12,0" 
+                                                            To="6,16,6,0" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="PART_ContentHost"/>
                                     </Storyboard>
@@ -798,15 +800,23 @@
                                     <Grid x:Name="grid">
                                         <TextBlock x:Name="tb0"
                                                    FontSize="16"
-                                                   Margin="12,0"
+                                                   Margin="6,0"
                                                    Text="{TemplateBinding FloatingLabelText}" 
                                                    VerticalAlignment="Center" 
                                                    HorizontalAlignment="Left"
                                                    IsHitTestVisible="False"
                                                    FontFamily="Microsoft YaHei UI"/>
+                                        <TextBlock Margin="6,0"
+                                                   Name="placeholder"
+                                                   Foreground="{StaticResource placeHolder}"
+                                                   Text="{TemplateBinding PlaceHolder}"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="Collapsed"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   IsHitTestVisible="False"/>
                                         <ScrollViewer x:Name="PART_ContentHost" 
                                                       FontSize="{TemplateBinding FontSize}"
-                                                      Margin="12,0"
+                                                      Margin="6,0"
                                                       FontFamily="{TemplateBinding FontFamily}"
                                                       VerticalAlignment="Center"/>
                                     </Grid>
@@ -817,13 +827,18 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Visibility" Value="Visible" TargetName="placeholder"/>
+                        </Trigger>
                         <Trigger Property="FloatingLabel" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="tb0" />
-                        </Trigger>                        
+                            <Setter TargetName="placeholder" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
                         <Trigger Property="FloatingLabel" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" TargetName="tb0" />
                             <Setter Property="Height" Value="45.3" />
                         </Trigger>
+
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="Prefix" Value="True" />
