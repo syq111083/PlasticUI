@@ -1,0 +1,108 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Plastic">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Plastic;component/Themes/Colors.xaml" />
+        <ResourceDictionary Source="/Plastic;component/Themes/Input.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <ControlTemplate x:Key="inputToggleBtn" TargetType="ToggleButton">
+        <Grid Background="Transparent">
+            <Path Stretch="Uniform" HorizontalAlignment="Right" Width="10" Margin="16,0" Data="{StaticResource down}" Stroke="#595e63" Fill="#595e63" />
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local:Select}">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Height" Value="45.3" />
+        <Setter Property="IsDropDownOpen" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Select}">
+                    <Grid Background="Transparent"
+                          Height="{TemplateBinding Height}">
+                        <ToggleButton ClickMode="Press"
+                                      Template="{StaticResource inputToggleBtn}"
+                                      IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <ContentPresenter x:Name="ContentSite"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                          Margin="16,0"
+                                          IsHitTestVisible="False"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left">
+                        </ContentPresenter>
+                        <local:Input x:Name="tb0"
+                                     IsReadOnly="True"
+                                     Height="{TemplateBinding Height}"
+                                     Focusable="True"
+                                     PlaceHolder=""
+                                     IsHitTestVisible="False"
+                                     Margin="0"/>
+                        <Popup x:Name="popup0"
+                               Placement="Bottom"
+                               Focusable="True"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               AllowsTransparency="True"
+                               PopupAnimation="Slide">
+                            <Grid SnapsToDevicePixels="True"
+                                  Margin="0,6"
+                                  Width="{TemplateBinding ActualWidth}"
+                                  MinWidth="{TemplateBinding MinWidth}"
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border x:Name="DropDownBorder"
+                                        CornerRadius="6"
+                                        Margin="3,0"
+                                        BorderThickness="1">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="#a0a0a0" />
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+                                        <SolidColorBrush Color="White" />
+                                    </Border.Background>
+                                </Border>
+                                <ScrollViewer Margin="0,3"
+                                              MinWidth="20"
+                                              VerticalScrollBarVisibility="Auto"
+                                              SnapsToDevicePixels="True">
+                                    <StackPanel KeyboardNavigation.DirectionalNavigation="Contained"
+                                                IsItemsHost="True"
+                                                Margin="1">
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle" >
+            <Setter.Value>
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                <Grid >
+                                    <Border Background="{TemplateBinding Background}" Name="border" Margin="3,0"/>
+                                    <ContentPresenter Margin="8,4"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#e0e0e6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Setter Property="IsDropDownOpen" Value="True" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

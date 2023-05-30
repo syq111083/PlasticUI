@@ -1,0 +1,174 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Plastic">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Plastic;component/Themes/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <Style TargetType="{x:Type local:CheckBox}">
+        <Setter Property="BorderWidth" Value="16"/>
+        <Setter Property="BorderHeight" Value="16"/>
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CheckBox}">
+                    <BulletDecorator>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="PressStates">
+                                <VisualState x:Name="UncheckedPressing">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
+                                                        Storyboard.TargetName="rect0"
+                                                        Duration="0"
+                                                        To="#e5e5e5"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Duration="0"
+                                                                       Storyboard.TargetName="tb">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPressing">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="#e5e5e5"
+                                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border"/>
+                                        <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
+                                                        Storyboard.TargetName="rect1"
+                                                        Duration="0"
+                                                        To="#e5e5e5"/>
+                                    </Storyboard>
+
+                                </VisualState>
+                                <VisualState x:Name="NotPressing">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
+                                                        Storyboard.TargetName="rect0"
+                                                        Duration="0"
+                                                        To="Transparent"/>
+                                        <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
+                                                        Storyboard.TargetName="rect1"
+                                                        Duration="0"
+                                                        To="Transparent"/>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="Transparent"
+                                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectStates">
+                                <VisualState x:Name="Unselected">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="Transparent"
+                                                        Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border"/>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="Transparent"
+                                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Duration="0"
+                                                                       Storyboard.TargetName="rect1">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="#0d6efd"
+                                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Duration="0"
+                                                                       Storyboard.TargetName="rect1">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="Transparent"
+                                                        Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="#c2dbfe"
+                                                        Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <BulletDecorator.Bullet>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Stroke="#dfe3e7"
+                                           Height="{TemplateBinding BorderHeight}"
+                                           Width="{TemplateBinding BorderWidth}"
+                                           StrokeThickness="0.67"
+                                           Margin="4"
+                                           x:Name="rect0"
+                                           RadiusX="4"
+                                           Fill="White"
+                                           RadiusY="4"/>
+                                <Border CornerRadius="6"
+                                        Focusable="True"
+                                        x:Name="border"
+                                        Background="#0d6efd"
+                                        BorderBrush="#c2dbfe"
+                                        Padding="0"
+                                        BorderThickness="4">
+                                    <Grid>
+                                        <Rectangle Fill="#0d6efd"
+                                                   x:Name="rect1"
+                                                   RadiusX="4"
+                                                   RadiusY="4"
+                                                   Width="{TemplateBinding BorderWidth}"
+                                                   Height="{TemplateBinding BorderHeight}"/>
+                                        <TextBlock Text="✓"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   Foreground="White"
+                                                   x:Name="tb"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                                <ContentPresenter Content="{TemplateBinding Content}" 
+                                                  Margin="0"
+                                                  Grid.Column="1"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  TextElement.FontSize="16"/>
+                            </Grid>
+                        </BulletDecorator.Bullet>
+                    </BulletDecorator>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

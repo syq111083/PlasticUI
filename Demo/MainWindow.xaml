@@ -62,6 +62,11 @@
                         <bootstrap:Input Width="200" Prefix="True" />
                         <bootstrap:Input Width="200" Suffix="True" />
                         <bootstrap:Input Width="400" Suffix="True" Prefix="True" SuffixContent="后缀能有多长" />
+                        <bootstrap:Input Width="200" Prefix="True">
+                            <bootstrap:Input.PrefixContent>
+                                <bootstrap:CheckBox IsChecked="{Binding Checked}" />
+                            </bootstrap:Input.PrefixContent>
+                        </bootstrap:Input>
                     </WrapPanel>
                 </bootstrap:Accordion>
                 <bootstrap:Accordion Header="Select">

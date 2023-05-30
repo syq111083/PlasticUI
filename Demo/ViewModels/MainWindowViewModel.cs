@@ -31,5 +31,14 @@ namespace Demo.ViewModels
 
 		public string[] Strs { get; set; } = new string[] { "item1", "item2", "item3" };
 
+		private bool _checked = true;
+
+		public bool Checked
+		{
+			get { return _checked; }
+			set => SetProperty(ref _checked, value);
+		}
+
+
 	}
 }

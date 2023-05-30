@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Plastic">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Plastic;component/Themes/Colors.xaml" />
+        <ResourceDictionary Source="/Plastic;component/Themes/Button.xaml" />
+        <ResourceDictionary Source="/Plastic;component/Themes/OutlineButtons.xaml" />
+        <ResourceDictionary Source="/Plastic;component/Themes/Input.xaml" />
+        <ResourceDictionary Source="/Plastic;component/Themes/Select.xaml" />
+        <ResourceDictionary Source="/Plastic;component/Themes/CheckBox.xaml" />
+        <ResourceDictionary Source="/Plastic;component/Themes/Range.xaml" />
+        <ResourceDictionary Source="/Plastic;component/Themes/Accordion.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
