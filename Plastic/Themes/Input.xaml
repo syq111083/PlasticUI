@@ -4,6 +4,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Plastic;component/Themes/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
+    
     <Geometry x:Key="down">
         M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z
     </Geometry>
@@ -63,7 +64,7 @@
                                           RecognizesAccessKey="True" />
         </Border>
     </ControlTemplate>
-
+    
     <Style TargetType="{x:Type local:Input}">
         <Setter Property="BorderBrush" Value="#e6e9ec" />
         <Setter Property="BorderThickness" Value="1"/>
