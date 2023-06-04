@@ -1,0 +1,16 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Plastic.Framework" Source="/Plastic.Framework;component/Themes/Spinner.xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Colors.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Button.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/OutlineButtons.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Input.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Select.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/CheckBox.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Range.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Accordion.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/PasswordBox.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Spinner.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Plastic
+namespace Plastic.Framework
 {
     public class OutlineButton : Button
     {

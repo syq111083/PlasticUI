@@ -23,7 +23,6 @@ namespace Demo
         public MainWindow()
         {
             InitializeComponent();
-            
         }
     }
 }

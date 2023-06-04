@@ -1,0 +1,97 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Plastic.Framework">
+    <Style TargetType="{x:Type local:Thumb}"
+           x:Key="thumb0">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="Width" Value="25" />
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Background" Value="#0d6efd"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Thumb}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="ellipse"
+                                                        Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.2"
+                                                        To="#c2dbfe"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusSates">
+                                <VisualState x:Name="Focus">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.2"
+                                                        To="#c2dbfe"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocus">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                                        Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.2"
+                                                        To="Transparent"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border CornerRadius="16"
+                                BorderThickness="3"
+                                BorderBrush="Transparent"
+                                x:Name="border" >
+                            <Ellipse Fill="{TemplateBinding Background}"
+                                 Width="16"
+                                 x:Name="ellipse"
+                                 Height="16">
+                            </Ellipse>
+
+                        </Border>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:Range}">
+        <Setter Property="IsMoveToPointEnabled" Value="True"/>
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Range}">
+                    <Grid x:Name="grid0"
+                          Background="Transparent">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1"
+                                Margin="0"
+                                Grid.Row="1"
+                                CornerRadius="4"
+                                Height="11"
+                                x:Name="border0"
+                                Background="#dee2e6"/>
+                        <Track x:Name="PART_Track"
+                               Grid.Row="1">
+                            <Track.Thumb>
+                                <local:Thumb Style="{StaticResource thumb0}"
+                                             x:Name="thumb0"/>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

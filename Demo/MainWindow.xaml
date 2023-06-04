@@ -6,7 +6,7 @@
         xmlns:viewmodel="clr-namespace:Demo.ViewModels"
         xmlns:local="clr-namespace:Demo"
         mc:Ignorable="d"
-        xmlns:bootstrap="clr-namespace:Plastic;assembly=Plastic"
+        xmlns:plastic="clr-namespace:Plastic.Framework;assembly=Plastic.Framework"
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -20,99 +20,170 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Plastic;component/Themes/PasswordBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="bootstrap:Button">
+            <Style TargetType="plastic:Button">
                 <Setter Property="Margin" Value="10,3" />
             </Style>
-            <Style TargetType="bootstrap:OutlineButton">
+            <Style TargetType="plastic:OutlineButton">
                 <Setter Property="Margin" Value="10,3" />
             </Style>
-            <Style TargetType="bootstrap:Input">
-                <Setter Property="Margin" Value="10,3,10,3" />
+            <Style TargetType="plastic:Spinner">
+                <Setter Property="Margin" Value="10,3" />
+            </Style>            
+            <Style TargetType="plastic:GrowingSpinner">
+                <Setter Property="Margin" Value="10,3" />
+            </Style>
+            <Style TargetType="plastic:Input">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+            <Style TargetType="GroupBox">
+                <Setter Property="Margin" Value="12"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
             </Style>
         </ResourceDictionary>
-
     </Window.Resources>
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <bootstrap:Accordion Header="Button" RenderTransformOrigin="0.5,0.5">
-                    <StackPanel>
-                        <WrapPanel>
-                            <bootstrap:Button />
-                            <bootstrap:Button Theme="Secondary"/>
-                            <bootstrap:Button Theme="Success"/>
-                            <bootstrap:Button Theme="Danger"/>
-                            <bootstrap:Button Theme="Warning" />
-                            <bootstrap:Button Theme="Info"/>
-                            <bootstrap:Button Theme="Light"/>
-                            <bootstrap:Button Theme="Dark" />
-                            <bootstrap:Button Theme="Primary" IsEnabled="False"/>
-                        </WrapPanel>
-                        <WrapPanel>
-                            <bootstrap:OutlineButton Theme="Primary" Content="圆角按钮" />
-                            <bootstrap:OutlineButton Theme="Secondary" Content="圆角按钮" />
-                            <bootstrap:OutlineButton Theme="Success" Content="圆角按钮" />
-                            <bootstrap:OutlineButton Theme="Warning" Content="圆角按钮" />
-                            <bootstrap:OutlineButton Theme="Danger" Content="圆角按钮" />
-                            <bootstrap:OutlineButton Theme="Dark" Content="圆角按钮" />
-                            <bootstrap:OutlineButton Theme="Info" Content="圆角按钮" />
-                            <bootstrap:OutlineButton Theme="Light" Content="圆角按钮" />
-                            <bootstrap:OutlineButton Theme="Primary" IsEnabled="False" Content="圆角按钮" />
-                        </WrapPanel>
-                    </StackPanel>
-                </bootstrap:Accordion>
-                <bootstrap:Accordion Header="Input">
+                <plastic:Accordion Header="Button" RenderTransformOrigin="0.5,0.5">
                     <WrapPanel>
-                        <GroupBox Header="Login" Margin="12,3">
-                            <StackPanel>
+                        <GroupBox Header="Button">
+                            <WrapPanel>
+                                <plastic:Button />
+                                <plastic:Button Theme="Secondary"/>
+                                <plastic:Button Theme="Success"/>
+                                <plastic:Button Theme="Danger"/>
+                                <plastic:Button Theme="Warning" />
+                                <plastic:Button Theme="Info"/>
+                                <plastic:Button Theme="Light"/>
+                                <plastic:Button Theme="Dark" />
+                                <plastic:Button Theme="Primary" IsEnabled="False"/>
+                            </WrapPanel>
+                        </GroupBox>
+                        <GroupBox Header="OutLineButton">
+                            <WrapPanel>
+                                <plastic:OutlineButton Theme="Primary" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Secondary" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Success" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Warning" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Danger" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Dark" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Info" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Light" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Primary" IsEnabled="False" Content="圆角按钮" />
+                            </WrapPanel>
+                        </GroupBox>
+                        <GroupBox Header="Button Group">
+                            <WrapPanel Margin="10,3">
+                                <WrapPanel >
+                                    <plastic:Button Margin="0" IsGroup="True" Content="Left" CornerRadius="6,0,0,6" />
+                                    <plastic:Button Margin="0" IsGroup="True" Content="Middle" CornerRadius="0" />
+                                    <plastic:Button Margin="0" IsGroup="True" Content="Right" CornerRadius="0,6,6,0" />
+                                </WrapPanel>
+                                <StackPanel Margin="12,0">
+                                    <plastic:Button Margin="0" Padding="0" Theme="Danger" Content="Top" CornerRadius="6,6,0,0" />
+                                    <plastic:Button Margin="0" Padding="0" Theme="Success" Content="Middle" CornerRadius="0" />
+                                    <plastic:Button Margin="0" Padding="0" Theme="Info" Content="Bottom" CornerRadius="0,0,6,6" />
+                                </StackPanel>
+                                <WrapPanel Margin="12,0">
+                                    <plastic:OutlineButton Margin="0" BorderThickness="1,1,0,1" IsGroup="True" Content="Left" CornerRadius="6,0,0,6" />
+                                    <plastic:OutlineButton Margin="0" IsGroup="True" Content="Middle" CornerRadius="0" />
+                                    <plastic:OutlineButton Margin="0" BorderThickness="0,1,1,1" IsGroup="True" Content="Right" CornerRadius="0,6,6,0" />
+                                </WrapPanel>
+                                <StackPanel Margin="12,0">
+                                    <plastic:OutlineButton Margin="0" Theme="Dark" Padding="0" BorderThickness="1,1,1,0" Content="Top" CornerRadius="6,6,0,0" />
+                                    <plastic:OutlineButton Margin="0" Theme="Warning" Padding="0" Content="Middle" CornerRadius="0" />
+                                    <plastic:OutlineButton Margin="0" Theme="Secondary" Padding="0" BorderThickness="1,0,1,1" Content="Bottom" CornerRadius="0,0,6,6" />
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+                    </WrapPanel>
+                </plastic:Accordion>
+                <plastic:Accordion Header="Input">
+                    <WrapPanel>
+                        <GroupBox Header="Login" VerticalAlignment="Top">
+                            <StackPanel VerticalAlignment="Top">
                                 <StackPanel Orientation="Horizontal">
-                                    <Label VerticalAlignment="Center" Content="Account" />
-                                    <bootstrap:Input Width="200" PlaceHolder="Please Enter"/>
+                                    <Label VerticalAlignment="Center" Content="Account" Width="70" />
+                                    <plastic:Input Width="350" PlaceHolder="Please Enter"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="Password" VerticalAlignment="Center"/>
-                                    <PasswordBox Width="200" />
+                                    <Label Content="Password" VerticalAlignment="Center" Width="70"/>
+                                    <PasswordBox Width="350" />
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
-
-                        <bootstrap:Input Width="200" FloatingLabelText="浮动标签" FloatingLabel="True" />
-                        <bootstrap:Input Width="200" Prefix="True" />
-                        <bootstrap:Input Width="200" Suffix="True" />
-                        <bootstrap:Input Width="400" Suffix="True" Prefix="True" SuffixContent="后缀能有多长" />
-                        <bootstrap:Input Width="200" Prefix="True">
-                            <bootstrap:Input.PrefixContent>
-                                <bootstrap:CheckBox IsChecked="{Binding Checked}" />
-                            </bootstrap:Input.PrefixContent>
-                        </bootstrap:Input>
+                        <GroupBox Header="FloatingLabel">
+                            <plastic:Input Width="350" FloatingLabelText="浮动标签" FloatingLabel="True" />
+                        </GroupBox>
+                        <GroupBox Header="Prefix and suffix">
+                            <StackPanel HorizontalAlignment="Left">
+                                <plastic:Input Width="350" Prefix="True" />
+                                <plastic:Input Width="350" Suffix="True" />
+                                <plastic:Input Width="350" Suffix="True" Prefix="True" SuffixContent="后缀能有多长" />
+                                <plastic:Input Width="350" Prefix="True">
+                                    <plastic:Input.PrefixContent>
+                                        <plastic:CheckBox IsChecked="{Binding Checked}" />
+                                    </plastic:Input.PrefixContent>
+                                </plastic:Input>
+                            </StackPanel>
+                        </GroupBox>
                     </WrapPanel>
-                </bootstrap:Accordion>
-                <bootstrap:Accordion Header="Select">
+                </plastic:Accordion>
+                <plastic:Accordion Header="Select">
                     <WrapPanel>
-                        <bootstrap:Select Width="100">
+                        <plastic:Select Width="100">
                             <ComboBoxItem>A</ComboBoxItem>
                             <ComboBoxItem>B</ComboBoxItem>
                             <ComboBoxItem>C</ComboBoxItem>
-                        </bootstrap:Select>
+                        </plastic:Select>
                     </WrapPanel>
-                </bootstrap:Accordion>
-                <bootstrap:Accordion Header="CheckBox">
+                </plastic:Accordion>
+                <plastic:Accordion Header="CheckBox">
                     <WrapPanel>
-                        <bootstrap:CheckBox Content="Check"/>
+                        <plastic:CheckBox Content="Check"/>
                     </WrapPanel>
-                </bootstrap:Accordion>
-                <bootstrap:Accordion Header="Range" RenderTransformOrigin="0.5,0.5">
-                    <bootstrap:Accordion.RenderTransform>
+                </plastic:Accordion>
+                <plastic:Accordion Header="Range" RenderTransformOrigin="0.5,0.5">
+                    <plastic:Accordion.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
                             <RotateTransform/>
                         </TransformGroup>
-                    </bootstrap:Accordion.RenderTransform>
+                    </plastic:Accordion.RenderTransform>
                     <WrapPanel>
-                        <bootstrap:Range Width="200" Margin="5,0,0,0" />
+                        <plastic:Range Width="200" Margin="5,0,0,0" />
                     </WrapPanel>
-                </bootstrap:Accordion>
+                </plastic:Accordion>
+                <plastic:Accordion Header="Spinners">
+                    <WrapPanel>
+                        <GroupBox Header="Spinners">
+                            <WrapPanel Margin="10,3">
+                                <plastic:Spinner Theme="Danger" />
+                                <plastic:Spinner Theme="Dark" />
+                                <plastic:Spinner Theme="Info" />
+                                <plastic:Spinner Theme="Light" />
+                                <plastic:Spinner Theme="Primary" />
+                                <plastic:Spinner Theme="Secondary" />
+                                <plastic:Spinner Theme="Success" />
+                                <plastic:Spinner Theme="Warning" />
+                            </WrapPanel>
+                        </GroupBox>                        
+                        <GroupBox Header="Growing Spinner">
+                            <WrapPanel Margin="10,3">
+                                <plastic:GrowingSpinner Theme="Danger" />
+                                <plastic:GrowingSpinner Theme="Dark" />
+                                <plastic:GrowingSpinner Theme="Info" />
+                                <plastic:GrowingSpinner Theme="Light" />
+                                <plastic:GrowingSpinner Theme="Primary" />
+                                <plastic:GrowingSpinner Theme="Secondary" />
+                                <plastic:GrowingSpinner Theme="Success" />
+                                <plastic:GrowingSpinner Theme="Warning" />
+                            </WrapPanel>
+                        </GroupBox>
+                    </WrapPanel>
+                </plastic:Accordion>
             </StackPanel>
         </ScrollViewer>
     </Grid>

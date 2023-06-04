@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Plastic.Framework">
+    <SolidColorBrush x:Key="borderBrush" Color="#FF375E85" />
+    <SolidColorBrush x:Key="backGround" Color="#0d6efd"/>
+    <SolidColorBrush x:Key="backGround1" Color="#0b5ed7"/>
+    <SolidColorBrush x:Key="backGround2" Color="#FF4E87B9"/>
+    <SolidColorBrush x:Key="blueBorder" Color="#E5C2DBFE" />
+    <SolidColorBrush x:Key="outBorder" Color="#FCC2DBFE"/>
+    <SolidColorBrush x:Key="pressed" Color="#FF375E81"/>
+    <SolidColorBrush x:Key="primary" Color="#0d6efd"/>
+    <SolidColorBrush x:Key="secondary" Color="#6c757d"/>
+    <SolidColorBrush x:Key="success" Color="#198754"/>
+    <SolidColorBrush x:Key="danger" Color="#dc3545"/>
+    <SolidColorBrush x:Key="warning" Color="#ffc107"/>
+    <SolidColorBrush x:Key="info" Color="#0dcaf0"/>
+    <SolidColorBrush x:Key="light" Color="#f8f9fa"/>
+    <SolidColorBrush x:Key="dark" Color="#212529"/>
+    <SolidColorBrush x:Key="placeHolder" Color="#595c5f"/>
+</ResourceDictionary>

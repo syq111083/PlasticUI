@@ -15,7 +15,7 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Plastic
+namespace Plastic.Framework
 {
     public class Button : System.Windows.Controls.Button
     {
