@@ -12,5 +12,8 @@
         <ResourceDictionary Source="/Plastic.Framework;component/Themes/Accordion.xaml" />
         <ResourceDictionary Source="/Plastic.Framework;component/Themes/PasswordBox.xaml" />
         <ResourceDictionary Source="/Plastic.Framework;component/Themes/Spinner.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Switch.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+
 </ResourceDictionary>

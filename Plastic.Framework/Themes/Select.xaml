@@ -15,13 +15,13 @@
         <Setter Property="FontSize" Value="16" />
         <Setter Property="MinWidth" Value="100"/>
         <Setter Property="Height" Value="45.3" />
-        <Setter Property="IsDropDownOpen" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Select}">
                     <Grid Background="Transparent"
                           Height="{TemplateBinding Height}">
                         <ToggleButton ClickMode="Press"
+                                      Focusable="True"
                                       Template="{StaticResource inputToggleBtn}"
                                       IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"/>
                         <ContentPresenter x:Name="ContentSite"
@@ -43,7 +43,7 @@
                                      Margin="0"/>
                         <Popup x:Name="popup0"
                                Placement="Bottom"
-                               Focusable="True"
+                               Focusable="False"
                                IsOpen="{TemplateBinding IsDropDownOpen}"
                                AllowsTransparency="True"
                                PopupAnimation="Slide">
@@ -100,10 +100,5 @@
                 </Style>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseCaptureWithin" Value="True">
-                <Setter Property="IsDropDownOpen" Value="True" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

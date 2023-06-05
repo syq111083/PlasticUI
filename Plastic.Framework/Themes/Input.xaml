@@ -82,7 +82,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Input}">
-                    <Grid>
+                    <Grid SnapsToDevicePixels="True">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused">
@@ -129,12 +129,12 @@
                                 </VisualState>
                                 <VisualState x:Name="WithText">
                                     <Storyboard Timeline.DesiredFrameRate="60">
-                                        <ThicknessAnimation Duration="0:0:0.2"
-                                                            To="8,0,0,16" 
+                                        <ThicknessAnimation Duration="0:0:0.125"
+                                                            To="8,0,0,17" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="tb0"/>
-                                        <ThicknessAnimation Duration="0:0:0.2"
-                                                            To="6,16,6,0" 
+                                        <ThicknessAnimation Duration="0:0:0.125"
+                                                            To="6,17,6,0" 
                                                             Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="PART_ContentHost"/>
                                     </Storyboard>
@@ -161,8 +161,7 @@
                             <VisualStateGroup>
                                 <VisualState x:Name="LabelGray">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0:0:0.1"
-                                                        BeginTime="0:0:0.2"
+                                        <ColorAnimation Duration="0:0:0.2"
                                                         To="#6f7174"
                                                         Storyboard.TargetName="tb0"
                                                         Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
@@ -170,11 +169,10 @@
                                 </VisualState>
                                 <VisualState x:Name="LabelBlack">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0:0:0.1"
-                                                    BeginTime="0:0:0.2"
-                                                    To="Black"
-                                                    Storyboard.TargetName="tb0"
-                                                    Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
+                                        <ColorAnimation Duration="0:0:0.2"
+                                                        To="Black"
+                                                        Storyboard.TargetName="tb0"
+                                                        Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -260,7 +258,6 @@
                             <Setter Property="Visibility" Value="Collapsed" TargetName="tb0" />
                             <Setter Property="Height" Value="45.3" />
                         </Trigger>
-
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="Prefix" Value="True" />

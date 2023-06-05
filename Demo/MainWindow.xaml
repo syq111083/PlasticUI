@@ -114,7 +114,10 @@
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="FloatingLabel">
-                            <plastic:Input Width="350" FloatingLabelText="浮动标签" FloatingLabel="True" />
+                            <StackPanel>
+                                <plastic:Input Width="350" FloatingLabelText="浮动标签" FloatingLabel="True" />
+                                <plastic:Input Width="350" FloatingLabelText="浮动标签" FloatingLabel="True" Prefix="True" PrefixContent="@" />
+                            </StackPanel>
                         </GroupBox>
                         <GroupBox Header="Prefix and suffix">
                             <StackPanel HorizontalAlignment="Left">
@@ -140,8 +143,9 @@
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="CheckBox">
-                    <WrapPanel>
+                    <WrapPanel Margin="10,12">
                         <plastic:CheckBox Content="Check"/>
+                        <plastic:Switch Margin="12,0" RenderTransformOrigin="0.5,0.5" Content="Switch"/>
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="Range" RenderTransformOrigin="0.5,0.5">
