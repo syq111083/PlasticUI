@@ -28,7 +28,7 @@
             </Style>
             <Style TargetType="plastic:Spinner">
                 <Setter Property="Margin" Value="10,3" />
-            </Style>            
+            </Style>
             <Style TargetType="plastic:GrowingSpinner">
                 <Setter Property="Margin" Value="10,3" />
             </Style>
@@ -143,9 +143,24 @@
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="CheckBox">
-                    <WrapPanel Margin="10,12">
-                        <plastic:CheckBox Content="Check"/>
-                        <plastic:Switch Margin="12,0" RenderTransformOrigin="0.5,0.5" Content="Switch"/>
+                    <WrapPanel>
+                        <GroupBox Header="Checks">
+                            <StackPanel Margin="10,3">
+                                <plastic:CheckBox Content="Check" />
+                                <plastic:CheckBox Content="Check" IsChecked="{x:Null}"/>
+                                <plastic:CheckBox Content="Check" IsEnabled="False" />
+                                <plastic:CheckBox Content="Check" IsEnabled="False" IsChecked="{x:Null}"/>
+                                <plastic:CheckBox Content="Check" IsChecked="True" IsEnabled="False"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Switches">
+                            <StackPanel Margin="10,3">
+                                <plastic:Switch  RenderTransformOrigin="0.5,0.5" Content="Switch"/>
+                                <plastic:Switch RenderTransformOrigin="0.5,0.5" IsEnabled="False" Content="Switch"/>
+                                <plastic:Switch RenderTransformOrigin="0.5,0.5" IsEnabled="False" IsChecked="True" Content="Switch"/>
+                            </StackPanel>
+
+                        </GroupBox>
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="Range" RenderTransformOrigin="0.5,0.5">
@@ -173,7 +188,7 @@
                                 <plastic:Spinner Theme="Success" />
                                 <plastic:Spinner Theme="Warning" />
                             </WrapPanel>
-                        </GroupBox>                        
+                        </GroupBox>
                         <GroupBox Header="Growing Spinner">
                             <WrapPanel Margin="10,3">
                                 <plastic:GrowingSpinner Theme="Danger" />

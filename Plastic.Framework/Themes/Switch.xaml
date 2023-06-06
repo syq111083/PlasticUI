@@ -10,8 +10,18 @@
                 <ControlTemplate TargetType="{x:Type local:Switch}">
                     <BulletDecorator>
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="SelectStates">
-                                <VisualState x:Name="Unselected">
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" >
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1"
+                                                         To="0.5"
+                                                         Storyboard.TargetName="grid"
+                                                         Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Unchecked">
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.15"
                                                         To="#bfbfbf"
@@ -29,7 +39,7 @@
 
                                     </Storyboard>
                                 </VisualState>
-                                <VisualState x:Name="Selected">
+                                <VisualState x:Name="Checked">
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.15"
                                                          To="#0d6efd"
@@ -43,6 +53,37 @@
                                                         To="White"
                                                         Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
                                                         Storyboard.TargetName="elli"/>
+                                    </Storyboard>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="PressStates">
+                                <VisualState x:Name="UncheckedPressing">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
+                                                        Storyboard.TargetName="elli"
+                                                        Duration="0"
+                                                        To="#acacac"/>                                        
+                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
+                                                        Storyboard.TargetName="border1"
+                                                        Duration="0"
+                                                        To="#e5e5e5"/>
+                                        <ColorAnimation Duration="0:0:0.15"
+                                                         To="#0d6efd"
+                                                         Storyboard.TargetName="border1"
+                                                         Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPressing">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.1"
+                                                        To="#0c63e4"
+                                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="border1"/>
+                                        <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
+                                                        Storyboard.TargetName="elli"
+                                                        Duration="0"
+                                                        To="#acacac"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -60,7 +101,7 @@
                                         <ColorAnimation Duration="0:0:0.15"
                                                          To="#c2dbfe"
                                                          Storyboard.TargetName="border"
-                                                         Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"/>
+                                                         Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"/>      
                                         <ColorAnimation Duration="0:0:0.15"
                                                         To="#c2dbfe"
                                                         Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
@@ -70,42 +111,40 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <BulletDecorator.Bullet>
-                            <Grid>
+                            <Grid x:Name="grid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-
                                 <Border BorderThickness="0"
-                                CornerRadius="8"
-                                SnapsToDevicePixels="True"
-                                VerticalAlignment="Center"
-                                Name="border"
-                                BorderBrush="Transparent"
-                                Background="#c2dbfe">
+                                        CornerRadius="8"
+                                        SnapsToDevicePixels="True"
+                                        VerticalAlignment="Center"
+                                        Name="border"
+                                        BorderBrush="Transparent"
+                                        Background="#c2dbfe">
                                     <Border Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    HorizontalAlignment="Center"
-                                    CornerRadius="8"
-                                    Margin="4"
-                                    Width="32"
-                                    x:Name="border1"
-                                    Height="16">
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            HorizontalAlignment="Center"
+                                            CornerRadius="8"
+                                            Margin="3"
+                                            Width="32"
+                                            x:Name="border1"
+                                            Height="16">
                                         <Ellipse SnapsToDevicePixels="True"
-                                             Width="10" 
-                                             Height="10" 
-                                             Fill="#bfbfbf" 
-                                             Name="elli"
-                                             HorizontalAlignment="Left" 
-                                             Margin="2,0">
+                                                 Width="10" 
+                                                 Height="10" 
+                                                 Fill="#bfbfbf" 
+                                                 Name="elli"
+                                                 HorizontalAlignment="Left" 
+                                                 Margin="2,0">
                                             <Ellipse.RenderTransform>
                                                 <TranslateTransform X="0" x:Name="trans"/>
                                             </Ellipse.RenderTransform>
                                         </Ellipse>
                                     </Border>
                                 </Border>
-
                                 <ContentPresenter Content="{TemplateBinding Content}" 
                                                       Margin="0"
                                                       Grid.Column="1"

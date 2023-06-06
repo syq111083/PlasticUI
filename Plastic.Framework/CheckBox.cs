@@ -18,10 +18,6 @@ namespace Plastic.Framework
 {
     [TemplatePart(Name = "rect0", Type = typeof(Rectangle))]
     [TemplatePart(Name = "rect1", Type = typeof(Rectangle))]
-    [TemplateVisualState(GroupName = "SelectStates", Name = "Unselected")]
-    [TemplateVisualState(GroupName = "SelectStates", Name = "Selected")]
-    [TemplateVisualState(GroupName = "FocusStates", Name = "Focused")]
-    [TemplateVisualState(GroupName = "FocusStates", Name = "Unfocused")]
     public class CheckBox : System.Windows.Controls.CheckBox
     {
         static CheckBox()
@@ -32,40 +28,22 @@ namespace Plastic.Framework
         protected override void OnGotFocus(RoutedEventArgs e)
         {
             base.OnGotFocus(e);
-            VisualStateManager.GoToState(this, "Focused", true);
         }
 
         public override void OnApplyTemplate()
         {
             Focusable = true;
-            VisualStateManager.GoToState(this, "Unselected", true);
-        }
-
-        protected override void OnChecked(RoutedEventArgs e)
-        {
-            base.OnChecked(e);
-            VisualStateManager.GoToState(this, "Selected", true);
-        }
-
-        protected override void OnUnchecked(RoutedEventArgs e)
-        {
-            base.OnUnchecked(e);
-            VisualStateManager.GoToState(this, "Unselected", true);
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
-            if (IsChecked == true)
+            if (IsChecked == null)
+                VisualStateManager.GoToState(this, "CheckedPressing", true);
+            else if((bool)IsChecked)
                 VisualStateManager.GoToState(this, "CheckedPressing", true);
             else
                 VisualStateManager.GoToState(this, "UncheckedPressing", true);
-        }
-
-        protected override void OnMouseUp(MouseButtonEventArgs e)
-        {
-            base.OnMouseUp(e);
-            VisualStateManager.GoToState(this, "NotPressing", true);
 
         }
 

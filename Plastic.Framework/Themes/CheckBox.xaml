@@ -4,7 +4,20 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Plastic;component/Themes/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <Geometry x:Key="check">
+        M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z
+    </Geometry>
+    <Geometry x:Key="indeter">
+        M 0,0 H 7
+    </Geometry>
     
+    <Geometry x:Key="app">
+        M11 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6zM5 1a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4H5z
+    </Geometry>
+
+
+
     <Style TargetType="{x:Type local:CheckBox}">
         <Setter Property="BorderWidth" Value="16"/>
         <Setter Property="BorderHeight" Value="16"/>
@@ -14,6 +27,16 @@
                 <ControlTemplate TargetType="{x:Type local:CheckBox}">
                     <BulletDecorator>
                         <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled" >
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1"
+                                                         To="0.5"
+                                                         Storyboard.TargetName="grid"
+                                                         Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
                             <VisualStateGroup x:Name="PressStates">
                                 <VisualState x:Name="UncheckedPressing">
                                     <Storyboard>
@@ -21,15 +44,6 @@
                                                         Storyboard.TargetName="rect0"
                                                         Duration="0"
                                                         To="#e5e5e5"/>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
-                                                                       Duration="0"
-                                                                       Storyboard.TargetName="tb">
-                                            <DiscreteObjectKeyFrame KeyTime="0">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Collapsed</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="CheckedPressing">
@@ -38,32 +52,20 @@
                                                         To="#e5e5e5"
                                                         Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
                                                         Storyboard.TargetName="border"/>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        To="#e5e5e5"
+                                                        Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="check"/>
                                         <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
                                                         Storyboard.TargetName="rect1"
                                                         Duration="0"
-                                                        To="#e5e5e5"/>
+                                                        To="#0c63e4"/>
                                     </Storyboard>
 
                                 </VisualState>
-                                <VisualState x:Name="NotPressing">
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
-                                                        Storyboard.TargetName="rect0"
-                                                        Duration="0"
-                                                        To="Transparent"/>
-                                        <ColorAnimation Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)" 
-                                                        Storyboard.TargetName="rect1"
-                                                        Duration="0"
-                                                        To="Transparent"/>
-                                        <ColorAnimation Duration="0:0:0.3"
-                                                        To="Transparent"
-                                                        Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
-                                                        Storyboard.TargetName="border"/>
-                                    </Storyboard>
-                                </VisualState>
                             </VisualStateGroup>
-                            <VisualStateGroup x:Name="SelectStates">
-                                <VisualState x:Name="Unselected">
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Unchecked">
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
                                                         To="Transparent"
@@ -82,9 +84,23 @@
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Duration="0"
+                                                                       Storyboard.TargetName="check">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Storyboard.TargetName="indeter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-                                <VisualState x:Name="Selected">
+                                <VisualState x:Name="Checked">
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
                                                         To="#0d6efd"
@@ -98,6 +114,39 @@
                                                     <Visibility>Visible</Visibility>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Duration="0"
+                                                                       Storyboard.TargetName="check">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Storyboard.TargetName="indeter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Text"
+                                                                       Storyboard.TargetName="tb">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="✓" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Storyboard.TargetName="indeter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>                                        
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                       Storyboard.TargetName="check">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -122,7 +171,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <BulletDecorator.Bullet>
-                            <Grid>
+                            <Grid x:Name="grid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />
@@ -150,12 +199,24 @@
                                                    RadiusY="4"
                                                    Width="{TemplateBinding BorderWidth}"
                                                    Height="{TemplateBinding BorderHeight}"/>
-                                        <TextBlock Text="✓"
+                                        <!--<TextBlock Text="✓"
                                                    FontSize="{TemplateBinding FontSize}"
                                                    Foreground="White"
                                                    x:Name="tb"
                                                    HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"/>
+                                                   VerticalAlignment="Center"/>-->
+                                        <Path Data="{StaticResource check}"
+                                              Name="check"
+                                              Fill="White"
+                                              SnapsToDevicePixels="True"
+                                              StrokeThickness="2" />                                        
+                                        <Path Data="{StaticResource indeter}"
+                                              Name="indeter"
+                                              Stroke="White"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              SnapsToDevicePixels="True"
+                                              StrokeThickness="2" />
                                     </Grid>
                                 </Border>
                                 <ContentPresenter Content="{TemplateBinding Content}" 
