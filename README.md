@@ -1,5 +1,6 @@
 # it's a WPF UI controls library
 ## I imitated the bootstrap v5 style
+## MIT license
 ***
 No quick start;<br>
 You Can review the Demo code to get How to use this;
