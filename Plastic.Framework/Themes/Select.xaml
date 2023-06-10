@@ -13,68 +13,141 @@
 
     <Style TargetType="{x:Type local:Select}">
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="MinWidth" Value="100"/>
         <Setter Property="Height" Value="45.3" />
+        <Setter Property="Placeholder" Value="select something"/>
+        <Setter Property="BorderBrush" Value="#e6e9ec" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Select}">
-                    <Grid Background="Transparent"
-                          Height="{TemplateBinding Height}">
-                        <ToggleButton ClickMode="Press"
-                                      Focusable="True"
-                                      Template="{StaticResource inputToggleBtn}"
-                                      IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"/>
-                        <ContentPresenter x:Name="ContentSite"
-                                          Content="{TemplateBinding SelectionBoxItem}"
-                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                          Margin="16,0"
-                                          IsHitTestVisible="False"
-                                          VerticalAlignment="Center"
-                                          HorizontalAlignment="Left">
-                        </ContentPresenter>
-                        <local:Input x:Name="tb0"
-                                     IsReadOnly="True"
-                                     Height="{TemplateBinding Height}"
-                                     Width="{TemplateBinding Width}"
-                                     Focusable="True"
-                                     PlaceHolder=""
-                                     IsHitTestVisible="False"
-                                     Margin="0"/>
-                        <Popup x:Name="popup0"
-                               Placement="Bottom"
-                               Focusable="False"
-                               IsOpen="{TemplateBinding IsDropDownOpen}"
-                               AllowsTransparency="True"
-                               PopupAnimation="Slide">
-                            <Grid SnapsToDevicePixels="True"
-                                  Margin="0,6"
-                                  Width="{TemplateBinding ActualWidth}"
-                                  MinWidth="{TemplateBinding MinWidth}"
-                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border x:Name="DropDownBorder"
-                                        CornerRadius="6"
-                                        Margin="3,0"
-                                        BorderThickness="1">
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Color="#a0a0a0" />
-                                    </Border.BorderBrush>
-                                    <Border.Background>
-                                        <SolidColorBrush Color="White" />
-                                    </Border.Background>
-                                </Border>
-                                <ScrollViewer Margin="0,3"
-                                              MinWidth="20"
-                                              VerticalScrollBarVisibility="Auto"
-                                              SnapsToDevicePixels="True">
-                                    <StackPanel KeyboardNavigation.DirectionalNavigation="Contained"
-                                                IsItemsHost="True"
-                                                Margin="1">
-                                    </StackPanel>
-                                </ScrollViewer>
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="inner_border"
+                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                                        To="#e9ecef"/>
+                                        <ColorAnimation Storyboard.TargetName="inner_border"
+                                                        Storyboard.TargetProperty="BorderBrush.(SolidColorBrush.Color)"
+                                                        To="#dee2e6"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.15" 
+                                                         To="1"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="out_border"/>
+                                        <ColorAnimation Duration="0:0:0.15" 
+                                                        To="#FCC2DBFE"
+                                                        Storyboard.TargetName="out_border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
+                                        <ColorAnimation Duration="0:0:0.15" 
+                                                        To="#86b7fe"
+                                                        Storyboard.TargetName="inner_border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.15" 
+                                                         To="0"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="out_border"/>
+                                        <ColorAnimation Duration="0:0:0.15"
+                                                        To="Transparent" 
+                                                        Storyboard.TargetName="out_border"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border CornerRadius="8"
+                                BorderThickness="4"
+                                Background="Transparent"
+                                Name="out_border"
+                                IsHitTestVisible="False"
+                                Opacity="{TemplateBinding OutBorderOpacity}"
+                                BorderBrush="#c2dbfe"/>
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                Focusable="True"
+                                IsHitTestVisible="True"
+                                Name="inner_border"
+                                Margin="4"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid Background="Transparent"
+                                  Name="grid">
+                                <Label x:Name="tb0"
+                                       Height="{TemplateBinding Height}"
+                                       Width="{TemplateBinding Width}"
+                                       Focusable="True"
+                                       Content="{TemplateBinding Placeholder}"
+                                       IsHitTestVisible="False"
+                                       VerticalAlignment="Center"
+                                       VerticalContentAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Visibility="Hidden"
+                                       Margin="12,0,29,0"/>
+                                <ContentPresenter x:Name="ContentSite"
+                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                  Margin="16,0"
+                                                  IsHitTestVisible="False"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"/>
+                                <ToggleButton ClickMode="Press"
+                                              Focusable="True"
+                                              Template="{StaticResource inputToggleBtn}"
+                                              IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Popup x:Name="popup0"
+                                       Placement="Bottom"
+                                       Focusable="False"
+                                       IsOpen="{TemplateBinding IsDropDownOpen}"
+                                       AllowsTransparency="True"
+                                       PopupAnimation="Slide">
+                                    <Grid SnapsToDevicePixels="True"
+                                          Margin="0,6"
+                                          Width="{Binding ElementName=inner_border,Path=ActualWidth}"
+                                          MinWidth="{TemplateBinding MinWidth}"
+                                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <Border x:Name="DropDownBorder"
+                                                CornerRadius="6"
+                                                Margin="0"
+                                                BorderThickness="1">
+                                            <Border.BorderBrush>
+                                                <SolidColorBrush Color="#a0a0a0" />
+                                            </Border.BorderBrush>
+                                            <Border.Background>
+                                                <SolidColorBrush Color="White" />
+                                            </Border.Background>
+                                        </Border>
+                                        <ScrollViewer Margin="0,3"
+                                                      MinWidth="20"
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      SnapsToDevicePixels="True">
+                                            <StackPanel KeyboardNavigation.DirectionalNavigation="Contained"
+                                                        IsItemsHost="True"
+                                                        Margin="1">
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </Popup>
                             </Grid>
-                        </Popup>
+                        </Border>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SelectedIndex" Value="-1">
+                            <Setter Property="Visibility" Value="Visible" TargetName="tb0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

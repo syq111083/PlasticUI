@@ -24,6 +24,7 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}"
                             CornerRadius="6,0,0,6"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Border.RenderTransform>
@@ -84,6 +85,16 @@
                 <ControlTemplate TargetType="{x:Type local:Input}">
                     <Grid SnapsToDevicePixels="True">
                         <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="grid0"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.1"
+                                                         To="0.5"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused">
                                     <Storyboard>
@@ -183,7 +194,8 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Grid Height="{TemplateBinding Height}">
+                        <Grid Height="{TemplateBinding Height}"
+                              x:Name="grid0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition />
@@ -242,11 +254,12 @@
                                     </Grid>
                                 </Border>
                             </Grid>
-
-
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsComboBox" Value="True">
+                            <Setter Property="Margin" Value="8,0,26,0" TargetName="placeholder" />
+                        </Trigger>
                         <Trigger Property="Text" Value="">
                             <Setter Property="Visibility" Value="Visible" TargetName="placeholder"/>
                         </Trigger>

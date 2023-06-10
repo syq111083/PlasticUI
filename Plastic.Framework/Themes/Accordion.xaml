@@ -110,7 +110,8 @@
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="BorderOut"
                                 BorderThickness="3"
-                                CornerRadius="8,8,0,0"
+                                CornerRadius="9,9,0,0"
+                                SnapsToDevicePixels="True"
                                 BorderBrush="Transparent">
                             <Border x:Name="Border"
                                     MinHeight="{TemplateBinding MinHeight}"

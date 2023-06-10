@@ -23,8 +23,8 @@ namespace Plastic.Framework
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Select), new FrameworkPropertyMetadata(typeof(Select)));
         }
 
-        private Input tb0;
-        public Input Tb0
+        private TextBlock tb0;
+        public TextBlock Tb0
         {
             get { return tb0; }
             set { tb0 = value; }
@@ -40,26 +40,36 @@ namespace Plastic.Framework
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            Tb0 = GetTemplateChild("tb0") as Input;
+            Tb0 = GetTemplateChild("tb0") as TextBlock;
             Popup0 = GetTemplateChild("popup0") as Popup;
-            Popup0.GotFocus += Popup0_GotFocus;
         }
 
-        private void Popup0_GotFocus(object sender, RoutedEventArgs e)
-        {
-            Tb0.Focus();
-        }
+
 
         protected override void OnDropDownOpened(EventArgs e)
         {
             base.OnDropDownOpened(e);
-            Tb0.Focus();
         }
 
         protected override void OnGotFocus(RoutedEventArgs e)
         {
             base.OnGotFocus(e);
-            Tb0.Focus();
+        }
+
+        public static readonly DependencyProperty PlaceholderProperty = DependencyProperty.Register("Placeholder", typeof(string), typeof(Select), new PropertyMetadata(null));
+
+        public string Placeholder
+        {
+            get => (string)GetValue(PlaceholderProperty);
+            set => SetValue(PlaceholderProperty, value);
+        }
+
+        public static readonly DependencyProperty OutBorderOpacityProperty = DependencyProperty.Register("OutBorderOpacity", typeof(double), typeof(Select), new PropertyMetadata((double)0));
+
+        public double OutBorderOpacity
+        {
+            get { return (double)GetValue(OutBorderOpacityProperty); }
+            set { SetValue(OutBorderOpacityProperty, value); }
         }
     }
 }

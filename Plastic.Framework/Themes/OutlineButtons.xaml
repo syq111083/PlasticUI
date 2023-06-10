@@ -124,7 +124,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="border"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         To="0.6"/>
+                                                         To="0.5"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>

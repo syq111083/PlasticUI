@@ -7,7 +7,13 @@
     </ResourceDictionary.MergedDictionaries>
     <ControlTemplate x:Key="inputToggleBtn" TargetType="ToggleButton">
         <Grid Background="Transparent">
-            <Path Stretch="Uniform" HorizontalAlignment="Right" Width="10" Margin="16,0" Data="{StaticResource down}" Stroke="#595e63" Fill="#595e63" />
+            <Path Stretch="Uniform" 
+                  HorizontalAlignment="Right" 
+                  Width="10" 
+                  Margin="16,0" 
+                  Data="{StaticResource down}" 
+                  Stroke="#595e63" 
+                  Fill="#595e63" />
         </Grid>
     </ControlTemplate>
 
@@ -16,11 +22,25 @@
         <Setter Property="MinWidth" Value="100"/>
         <Setter Property="Height" Value="45.3" />
         <Setter Property="IsDropDownOpen" Value="False"/>
+        <Setter Property="Placeholder" Value="select sth"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Select}">
                     <Grid Background="Transparent"
+                          Name="grid"
                           Height="{TemplateBinding Height}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disable">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.1"
+                                                         To="0.5"
+                                                         Storyboard.TargetName="grid"
+                                                         Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <ToggleButton ClickMode="Press"
                                       Template="{StaticResource inputToggleBtn}"
                                       IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"/>

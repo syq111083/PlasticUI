@@ -117,6 +117,14 @@
                             <StackPanel>
                                 <plastic:Input Width="350" FloatingLabelText="浮动标签" FloatingLabel="True" />
                                 <plastic:Input Width="350" FloatingLabelText="浮动标签" FloatingLabel="True" Prefix="True" PrefixContent="@" />
+                                <plastic:Input Width="350"
+                                               FloatingLabelText="浮动标签" 
+                                               FloatingLabel="True" 
+                                               Prefix="True" 
+                                               PrefixContent="www" 
+                                               IsEnabled="False"
+                                               Suffix="True"
+                                               SuffixContent=".com"/>
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="Prefix and suffix">
@@ -135,11 +143,12 @@
                 </plastic:Accordion>
                 <plastic:Accordion Header="Select">
                     <WrapPanel>
-                        <plastic:Select Width="100">
+                        <plastic:Select >
                             <ComboBoxItem>A</ComboBoxItem>
                             <ComboBoxItem>B</ComboBoxItem>
                             <ComboBoxItem>C</ComboBoxItem>
                         </plastic:Select>
+                        <plastic:Select  IsEnabled="False" />
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="CheckBox">

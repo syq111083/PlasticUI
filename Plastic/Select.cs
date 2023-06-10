@@ -61,5 +61,13 @@ namespace Plastic
             base.OnGotFocus(e);
             Tb0.Focus();
         }
+
+        public static readonly DependencyProperty PlaceholderProperty = DependencyProperty.Register("Placeholder",typeof(string),typeof(Select), new PropertyMetadata(null));
+
+        public string Placeholder
+        {
+            get => (string)GetValue(PlaceholderProperty);
+            set => SetValue(PlaceholderProperty, value);
+        }
     }
 }

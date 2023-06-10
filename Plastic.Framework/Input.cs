@@ -131,5 +131,13 @@ namespace Plastic.Framework
             get => (string)GetValue(PlaceHolderProperty); 
             set => SetValue(PlaceHolderProperty, value);
         }
+
+        public static readonly DependencyProperty IsComboBoxProperty = DependencyProperty.Register("IsComboBox",typeof (bool), typeof(Input),new PropertyMetadata(false));
+
+        public bool IsComboBox
+        {
+            get => (bool)GetValue(IsComboBoxProperty);
+            set => SetValue(IsComboBoxProperty, value);
+        }
     }
 }
