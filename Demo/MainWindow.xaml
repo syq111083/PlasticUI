@@ -18,8 +18,10 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Plastic;component/Themes/PasswordBox.xaml" />
+                <ResourceDictionary Source="/Plastic.Framework;component/Themes/PasswordBox.xaml" />
+                <ResourceDictionary Source="/Plastic.Framework;component/Themes/ScrollBar.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ScrollBar" BasedOn="{StaticResource scrollBar}" />
             <Style TargetType="plastic:Button">
                 <Setter Property="Margin" Value="10,3" />
             </Style>
