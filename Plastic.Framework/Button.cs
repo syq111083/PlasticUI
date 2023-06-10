@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
@@ -28,7 +29,7 @@ namespace Plastic.Framework
 
         public CornerRadius CornerRadius
         {
-            get => (CornerRadius)GetValue(CornerRadiusProperty); 
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
         }
 
@@ -36,25 +37,53 @@ namespace Plastic.Framework
 
         public Theme Theme
         {
-            get => (Theme)GetValue(ThemeProperty); 
-            set => SetValue(ThemeProperty, value); 
+            get => (Theme)GetValue(ThemeProperty);
+            set => SetValue(ThemeProperty, value);
         }
 
-        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register("Padding", typeof(Thickness), typeof(Button));
-
-        public Thickness Padding
-        {
-            get => (Thickness)GetValue(PaddingProperty);
-            set => SetValue(PaddingProperty, value);
-        }
-
-        public static readonly DependencyProperty IsGroupProperty = DependencyProperty.Register("IsGroup",typeof(bool), typeof(Button), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsGroupProperty = DependencyProperty.Register("IsGroup", typeof(bool), typeof(Button), new PropertyMetadata(false));
 
         public bool IsGroup
         {
             get => (bool)GetValue(IsGroupProperty);
             set => SetValue(IsGroupProperty, value);
         }
-    
+
+
+        public static readonly DependencyProperty BrightnessProperty = DependencyProperty.Register("Brightness", typeof(double), typeof(Button), new FrameworkPropertyMetadata((double)0,
+      FrameworkPropertyMetadataOptions.AffectsRender,
+      new PropertyChangedCallback(OnBrightnessChanged)));
+
+        public double Brightness
+        {
+            get => (double)GetValue(BrightnessProperty);
+            set => SetValue(BrightnessProperty, value);
+        }
+
+        public Color? OriginBrush;
+
+        private static void OnBrightnessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Button btn = (Button)d;
+            SolidColorBrush background = (SolidColorBrush)btn.Background;
+            Color backcolor = background.Color;
+            if(btn.OriginBrush == null)
+                btn.OriginBrush = backcolor;
+            byte r = (byte)(btn.OriginBrush?.R * btn.Brightness);
+            byte g = (byte)(btn.OriginBrush?.G * btn.Brightness);
+            byte b = (byte)(btn.OriginBrush?.B * btn.Brightness);
+            Color newColor = Color.FromArgb(255, r, g, b);
+            btn.Background = new SolidColorBrush(newColor);
+
+            //ColorAnimation animation = new ColorAnimation();
+            //animation.To = newColor;
+            //animation.Duration = TimeSpan.FromMilliseconds(1500);
+            //animation.From = btn.OriginBrush;
+            //Storyboard storyboard = new Storyboard();
+            //PropertyPath propertyPath = new PropertyPath("Background.(SolidColorBrush.Color)");
+            //Storyboard.SetTarget(animation, btn);
+            //Storyboard.SetTargetProperty(btn, propertyPath);
+            //storyboard.Begin();
+        }
     }
 }

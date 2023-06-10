@@ -62,6 +62,14 @@
                                 <plastic:Button Theme="Primary" IsEnabled="False"/>
                             </WrapPanel>
                         </GroupBox>
+                        <GroupBox Header="Custom SolidColor">
+                            <WrapPanel>
+                                <plastic:Button Theme="Custom" Background="#FF9F04F5" />
+                                <plastic:Button Theme="Custom" Background="#FF04F51E" Foreground="Black" />
+                                <plastic:Button Theme="Custom" Background="#FFF56704" />
+                                <plastic:Button Theme="Custom" Background="#FF0800FF" />
+                            </WrapPanel>
+                        </GroupBox>
                         <GroupBox Header="OutLineButton">
                             <WrapPanel>
                                 <plastic:OutlineButton Theme="Primary" Content="圆角按钮" />

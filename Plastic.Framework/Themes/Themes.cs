@@ -15,6 +15,7 @@ namespace Plastic.Themes
         Warning,
         Info,
         Light,
-        Dark
+        Dark,
+        Custom
     }
 }
