@@ -67,11 +67,17 @@ namespace Plastic.Framework
             Button btn = (Button)d;
             SolidColorBrush background = (SolidColorBrush)btn.Background;
             Color backcolor = background.Color;
-            if(btn.OriginBrush == null)
+            if (btn.OriginBrush == null)
                 btn.OriginBrush = backcolor;
             byte r = (byte)(btn.OriginBrush?.R * btn.Brightness);
+            if (r<btn.OriginBrush?.R && btn.Brightness>1)
+                r = 255;
             byte g = (byte)(btn.OriginBrush?.G * btn.Brightness);
+            if (g<btn.OriginBrush?.G && btn.Brightness>1)
+                g = 255;
             byte b = (byte)(btn.OriginBrush?.B * btn.Brightness);
+            if (b<btn.OriginBrush?.B &&btn.Brightness>1)
+                b = 255;
             Color newColor = Color.FromArgb(255, r, g, b);
             btn.Background = new SolidColorBrush(newColor);
 
