@@ -1,4 +1,5 @@
 # it's a WPF UI controls library
+## ``Envirment: Visual Studio 2022;.NET 6;.NET Framework 4.7.2``
 ## I imitated the bootstrap v5 style
 ## MIT license
 ***
