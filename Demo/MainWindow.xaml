@@ -36,11 +36,15 @@
             </Style>
             <Style TargetType="plastic:Input">
                 <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Width" Value="350"/>
             </Style>
             <Style TargetType="GroupBox">
                 <Setter Property="Margin" Value="12"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+            <Style TargetType="WrapPanel">
+                <Setter Property="VerticalAlignment" Value="Top"/>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -59,7 +63,7 @@
                                 <plastic:Button Theme="Info"/>
                                 <plastic:Button Theme="Light"/>
                                 <plastic:Button Theme="Dark" />
-                                <plastic:Button Theme="Primary" IsEnabled="False"/>
+                                <plastic:Button Theme="Primary" IsEnabled="False" Content="Disabled"/>
                             </WrapPanel>
                         </GroupBox>
                         <GroupBox Header="Custom SolidColor">
@@ -80,7 +84,7 @@
                                 <plastic:OutlineButton Theme="Dark" Content="圆角按钮" />
                                 <plastic:OutlineButton Theme="Info" Content="圆角按钮" />
                                 <plastic:OutlineButton Theme="Light" Content="圆角按钮" />
-                                <plastic:OutlineButton Theme="Primary" IsEnabled="False" Content="圆角按钮" />
+                                <plastic:OutlineButton Theme="Primary" IsEnabled="False" Content="Disabled" />
                             </WrapPanel>
                         </GroupBox>
                         <GroupBox Header="Button Group">
@@ -106,6 +110,13 @@
                                     <plastic:OutlineButton Margin="0" Theme="Secondary" Padding="0" BorderThickness="1,0,1,1" Content="Bottom" CornerRadius="0,0,6,6" />
                                 </StackPanel>
                             </WrapPanel>
+                        </GroupBox>
+                        <GroupBox Header="Size">
+                            <StackPanel>
+                                <plastic:Button Size="Small" Content="Small" />
+                                <plastic:Button  Content="Default"/>
+                                <plastic:Button Size="Large" Content="Large"/>
+                            </StackPanel>
                         </GroupBox>
                     </WrapPanel>
                 </plastic:Accordion>
@@ -149,16 +160,32 @@
                                 </plastic:Input>
                             </StackPanel>
                         </GroupBox>
+                        <GroupBox Header="Size">
+                            <StackPanel>
+                                <plastic:Input Size="Small" Prefix="True" PrefixContent="Small" PlaceHolder="" />
+                                <plastic:Input Size="Default" Prefix="True" PrefixContent="Default" PlaceHolder=""/>
+                                <plastic:Input Size="Large" Prefix="True" PrefixContent="Large"  PlaceHolder=""/>
+                            </StackPanel>
+                        </GroupBox>
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="Select">
                     <WrapPanel>
-                        <plastic:Select >
-                            <ComboBoxItem>A</ComboBoxItem>
-                            <ComboBoxItem>B</ComboBoxItem>
-                            <ComboBoxItem>C</ComboBoxItem>
-                        </plastic:Select>
-                        <plastic:Select  IsEnabled="False" />
+                        <GroupBox Header="Normal">
+                            <StackPanel>
+                                <plastic:Select ItemsSource="{Binding Strs}" Placeholder="" />
+                                <plastic:Select ItemsSource="{Binding Strs}" />
+                                <plastic:Select IsEnabled="False" Placeholder="Disabled" />
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Size">
+                            <StackPanel>
+                                <plastic:Select Size="Small" ItemsSource="{Binding Strs}" Placeholder="Small" />
+                                <plastic:Select ItemsSource="{Binding Strs}" Placeholder="Default"/>
+                                <plastic:Select Size="Large" ItemsSource="{Binding Strs}" Placeholder="Large"/>
+                            </StackPanel>
+                        </GroupBox>
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="CheckBox">

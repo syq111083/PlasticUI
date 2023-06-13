@@ -1,4 +1,5 @@
-﻿using Plastic.Themes;
+﻿using Plastic.Framework.Enums;
+using Plastic.Themes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,6 @@ namespace Plastic.Framework
         {
             base.OnMouseLeave(e);
             VisualStateManager.GoToState(this, "normal", true);
-
         }
 
     }

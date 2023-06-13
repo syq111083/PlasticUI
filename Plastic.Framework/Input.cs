@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plastic.Framework.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -138,6 +139,14 @@ namespace Plastic.Framework
         {
             get => (bool)GetValue(IsComboBoxProperty);
             set => SetValue(IsComboBoxProperty, value);
+        }
+
+        public static readonly DependencyProperty SizeProperty = DependencyProperty.Register("Size", typeof(SizeEnum), typeof(Input), new PropertyMetadata(SizeEnum.Default));
+
+        public SizeEnum Size
+        {
+            get => (SizeEnum)GetValue(SizeProperty);
+            set => SetValue(SizeProperty, value);
         }
     }
 }

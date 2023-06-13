@@ -1,4 +1,5 @@
-﻿using Plastic.Themes;
+﻿using Plastic.Framework.Enums;
+using Plastic.Themes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,16 +81,14 @@ namespace Plastic.Framework
                 b = 255;
             Color newColor = Color.FromArgb(255, r, g, b);
             btn.Background = new SolidColorBrush(newColor);
+        }
 
-            //ColorAnimation animation = new ColorAnimation();
-            //animation.To = newColor;
-            //animation.Duration = TimeSpan.FromMilliseconds(1500);
-            //animation.From = btn.OriginBrush;
-            //Storyboard storyboard = new Storyboard();
-            //PropertyPath propertyPath = new PropertyPath("Background.(SolidColorBrush.Color)");
-            //Storyboard.SetTarget(animation, btn);
-            //Storyboard.SetTargetProperty(btn, propertyPath);
-            //storyboard.Begin();
+        public static readonly DependencyProperty SizeProperty = DependencyProperty.Register("Size", typeof(SizeEnum), typeof(Button), new PropertyMetadata(SizeEnum.Default));
+
+        public SizeEnum Size
+        {
+            get => (SizeEnum)GetValue(SizeProperty);
+            set => SetValue(SizeProperty, value);
         }
     }
 }

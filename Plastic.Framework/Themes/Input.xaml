@@ -4,7 +4,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Plastic;component/Themes/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <Geometry x:Key="down">
         M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z
     </Geometry>
@@ -43,6 +43,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
     </Style>
 
     <ControlTemplate TargetType="Label" x:Key="suffixLabel">
@@ -65,7 +66,7 @@
                                           RecognizesAccessKey="True" />
         </Border>
     </ControlTemplate>
-    
+
     <Style TargetType="{x:Type local:Input}">
         <Setter Property="BorderBrush" Value="#e6e9ec" />
         <Setter Property="BorderThickness" Value="1"/>
@@ -257,6 +258,19 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="Size" Value="Small">
+                            <Setter Property="Height" Value="41" />
+                            <Setter Property="FontSize" Value="14"/>
+                        </Trigger>                        
+                        <Trigger Property="Size" Value="Default">
+                            <Setter Property="Height" Value="48" />
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>                        
+                        <Trigger Property="Size" Value="Large">
+                            <Setter Property="Height" Value="58" />
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="FontWeight" Value="Black"/>
+                        </Trigger>
                         <Trigger Property="IsComboBox" Value="True">
                             <Setter Property="Margin" Value="8,0,26,0" TargetName="placeholder" />
                         </Trigger>
@@ -266,10 +280,10 @@
                         <Trigger Property="FloatingLabel" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="tb0" />
                             <Setter TargetName="placeholder" Property="Visibility" Value="Collapsed"/>
+                            <Setter Property="Height" Value="58"/>
                         </Trigger>
                         <Trigger Property="FloatingLabel" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" TargetName="tb0" />
-                            <Setter Property="Height" Value="45.3" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

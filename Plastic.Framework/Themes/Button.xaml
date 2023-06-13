@@ -46,6 +46,18 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="Size" Value="Small">
+                <Setter Property="Height" Value="31" />
+                <Setter Property="FontSize" Value="14"/>
+            </Trigger>
+            <Trigger Property="Size" Value="Default">
+                <Setter Property="Height" Value="38" />
+                <Setter Property="FontSize" Value="16"/>
+            </Trigger>
+            <Trigger Property="Size" Value="Large">
+                <Setter Property="Height" Value="48" />
+                <Setter Property="FontSize" Value="20"/>
+            </Trigger>
             <Trigger Property="IsGroup" Value="True">
                 <Setter Property="Padding" Value="0,3,0,3"/>
             </Trigger>

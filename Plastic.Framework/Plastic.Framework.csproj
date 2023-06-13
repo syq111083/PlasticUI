@@ -106,6 +106,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="CheckBox.cs" />
+    <Compile Include="Enums\SizeEnum.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="OutlineButton.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
