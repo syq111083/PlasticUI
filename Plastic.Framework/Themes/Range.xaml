@@ -20,9 +20,18 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="ellipse"
                                                         Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
-                                                        Duration="0:0:0.2"
+                                                        Duration="0:0:0.15"
                                                         To="#c2dbfe"/>
                                     </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="ellipse"
+                                                        Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)"
+                                                        Duration="0:0:0.15"
+                                                        To="#575a5e"/>
+                                    </Storyboard>
+
                                 </VisualState>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="FocusSates">

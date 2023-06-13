@@ -10,8 +10,8 @@
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        Height="720" 
-        Width="1280">
+        Height="900" 
+        Width="1600">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
@@ -218,7 +218,12 @@
                         </TransformGroup>
                     </plastic:Accordion.RenderTransform>
                     <WrapPanel>
-                        <plastic:Range Width="200" Margin="5,0,0,0" />
+                        <GroupBox Header="Normal">
+                            <StackPanel>
+                                <plastic:Range Width="200" Margin="5,0,0,0" Value="50" Maximum="100"/>
+                                <plastic:Range Width="200" Margin="5,0,0,0" Value="50" IsEnabled="False" Maximum="100" />
+                            </StackPanel>
+                        </GroupBox>
                     </WrapPanel>
                 </plastic:Accordion>
                 <plastic:Accordion Header="Spinners">
