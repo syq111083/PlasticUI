@@ -4,12 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:Demo.ViewModels"
-        xmlns:local="clr-namespace:Demo"
         mc:Ignorable="d"
         xmlns:plastic="clr-namespace:Plastic.Framework;assembly=Plastic.Framework"
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         Height="900" 
         Width="1600">
     <Window.DataContext>
@@ -68,10 +66,22 @@
                         </GroupBox>
                         <GroupBox Header="Custom SolidColor">
                             <WrapPanel>
-                                <plastic:Button Theme="Custom" Background="#FF9F04F5" />
-                                <plastic:Button Theme="Custom" Background="#FF04F51E" Foreground="Black" />
-                                <plastic:Button Theme="Custom" Background="#FFF56704" />
-                                <plastic:Button Theme="Custom" Background="#FF0800FF" />
+                                <plastic:Button Theme="Custom" >
+                                    <plastic:Button.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF0F55FF"/>
+                                            <GradientStop Color="#FF6F748E" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </plastic:Button.Background>
+                                </plastic:Button>
+                                <plastic:Button Theme="Custom" >
+                                    <plastic:Button.Background>
+                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                            <GradientStop Color="#FFF90000"/>
+                                            <GradientStop Color="#FFE8AD7C" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </plastic:Button.Background>
+                                </plastic:Button>
                             </WrapPanel>
                         </GroupBox>
                         <GroupBox Header="OutLineButton">

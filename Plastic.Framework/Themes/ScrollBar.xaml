@@ -20,7 +20,7 @@
                                         <DoubleAnimation To="1"
                                                          Duration="0"
                                                          Storyboard.TargetName="scale"
-                                                         Storyboard.TargetProperty="ScaleX"/>                                       
+                                                         Storyboard.TargetProperty="ScaleX"/>
                                         <DoubleAnimation To="1"
                                                          Duration="0"
                                                          Storyboard.TargetName="scale"
@@ -105,11 +105,42 @@
                 <RowDefinition Height="0.00001*" />
                 <RowDefinition MaxHeight="18" />
             </Grid.RowDefinitions>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation To="0" 
+                                             Storyboard.TargetName="top"
+                                             Storyboard.TargetProperty="Opacity"
+                                             BeginTime="0:0:0.5"
+                                             Duration="0:0:0.65"/>
+                            <DoubleAnimation To="0" 
+                                             Storyboard.TargetName="down"
+                                             Storyboard.TargetProperty="Opacity"
+                                             BeginTime="0:0:0.5"
+                                             Duration="0:0:0.65"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation To="1" 
+                                             Storyboard.TargetName="top"
+                                             Storyboard.TargetProperty="Opacity"
+                                             Duration="0:0:0.15"/>                           
+                            <DoubleAnimation To="1" 
+                                             Storyboard.TargetName="down"
+                                             Storyboard.TargetProperty="Opacity"
+                                             Duration="0:0:0.15"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
             <Border Grid.RowSpan="3"
                     CornerRadius="6"
                     Background="#f0f0f0" />
             <RepeatButton Grid.Row="0"
                           Margin="0,4"
+                          Name="top"
                           Style="{StaticResource repeatBtn}"
                           Command="ScrollBar.LineUpCommand" >
             </RepeatButton>
@@ -160,11 +191,42 @@
                 <ColumnDefinition Width="0.00001*" />
                 <ColumnDefinition MaxWidth="12" />
             </Grid.ColumnDefinitions>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimation To="0" 
+                                             Storyboard.TargetName="left"
+                                             Storyboard.TargetProperty="Opacity"
+                                             BeginTime="0:0:0.5"
+                                             Duration="0:0:0.65"/>
+                            <DoubleAnimation To="0" 
+                                             Storyboard.TargetName="right"
+                                             Storyboard.TargetProperty="Opacity"
+                                             BeginTime="0:0:0.5"
+                                             Duration="0:0:0.65"/>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimation To="1" 
+                                             Storyboard.TargetName="left"
+                                             Storyboard.TargetProperty="Opacity"
+                                             Duration="0:0:0.15"/>                            
+                            <DoubleAnimation To="1" 
+                                             Storyboard.TargetName="right"
+                                             Storyboard.TargetProperty="Opacity"
+                                             Duration="0:0:0.15"/>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
             <Border Grid.ColumnSpan="3"
                     CornerRadius="6"
                     Background="#f0f0f0" />
             <RepeatButton RenderTransformOrigin="0.5,0.5"
                           Margin="0"
+                          Name="left"
                           Style="{StaticResource repeatBtn}"
                           Command="ScrollBar.LineLeftCommand" >
                 <RepeatButton.RenderTransform>
@@ -194,6 +256,7 @@
             </Track>
             <RepeatButton Grid.Column="2"
                           Margin="0"
+                          Name="right"
                           Style="{StaticResource repeatBtn}"
                           RenderTransformOrigin="0.5,0.5"
                           Command="ScrollBar.LineRightCommand" >
