@@ -16,7 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace Plastic.Framework
 {
     public class Button : System.Windows.Controls.Button
@@ -69,7 +68,10 @@ namespace Plastic.Framework
             SolidColorBrush background = (SolidColorBrush)btn.Background;
             Color backcolor = background.Color;
             if (btn.OriginBrush == null)
+            {
                 btn.OriginBrush = backcolor;
+            }
+
             byte r = (byte)(btn.OriginBrush?.R * btn.Brightness);
             if (r<btn.OriginBrush?.R && btn.Brightness>1)
                 r = 255;
