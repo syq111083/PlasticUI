@@ -179,7 +179,7 @@
                         </GroupBox>
                     </WrapPanel>
                 </plastic:Accordion>
-                <plastic:Accordion Header="Select">
+                <plastic:Accordion Header="Select" >
                     <WrapPanel>
                         <GroupBox Header="Normal">
                             <StackPanel>

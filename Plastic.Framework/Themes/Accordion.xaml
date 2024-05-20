@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Plastic.Framework">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Plastic;component/Themes/Colors.xaml" />
-        <ResourceDictionary Source="/Plastic;component/Themes/Input.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Colors.xaml" />
+        <ResourceDictionary Source="/Plastic.Framework;component/Themes/Input.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style TargetType="ToggleButton" x:Key="accordionButton">
         <Setter Property="Template">

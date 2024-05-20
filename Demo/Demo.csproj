@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Plastic.Framework\Plastic.Framework.csproj" />
-    <ProjectReference Include="..\Plastic\Plastic.csproj" />
   </ItemGroup>
 
 </Project>
